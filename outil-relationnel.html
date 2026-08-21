@@ -93,9 +93,76 @@
   font-style: italic;
   text-align: center;
 }
+
+/* ===== CARTE OUTIL CLIQUABLE + MODAL PDF ===== */
+.outil-card-clickable {
+  cursor: pointer;
+}
+.outil-card-clickable:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+}
+
+.pdf-modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.75);
+  z-index: 1000;
+  padding: 3rem 1.5rem;
+}
+.pdf-modal-overlay.open {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.pdf-modal {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  width: 100%;
+  max-width: 900px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.pdf-modal-header {
+  display: flex;
+  justify-content: flex-end;
+  padding: 0.6rem 0.8rem;
+  border-bottom: 1px solid var(--border);
+}
+.pdf-modal-close {
+  background: none;
+  border: none;
+  color: var(--text);
+  font-size: 1.6rem;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0.2rem 0.6rem;
+}
+.pdf-modal-close:hover {
+  color: var(--gold);
+}
+.pdf-modal iframe {
+  flex: 1;
+  width: 100%;
+  border: none;
+}
   </style>
 </head>
 <body>
+
+<!-- MODAL PDF -->
+<div class="pdf-modal-overlay" id="pdfModal" onclick="if(event.target===this)closePdfModal()">
+  <div class="pdf-modal">
+    <div class="pdf-modal-header">
+      <button type="button" class="pdf-modal-close" onclick="closePdfModal()" aria-label="Fermer">&times;</button>
+    </div>
+    <iframe id="pdfModalFrame" src="" title="Aperçu du document PDF"></iframe>
+  </div>
+</div>
 
 <!-- MENU MOBILE OVERLAY -->
 <div class="mobile-menu" id="mobileMenu">
@@ -141,158 +208,24 @@
   <p class="section-sub">Voici les outils fondamentaux pour transformer vos échanges en véritables rencontres.</p>
 
   <div class="outils-grid">
-    <div class="outil-card">
+    <div class="outil-card outil-card-clickable" onclick="openPdfModal('ebooks/Ecoute_Active.pdf')" role="button" tabindex="0" onkeydown="if(event.key==='Enter')openPdfModal('ebooks/Ecoute_Active.pdf')">
       <h3>L'écoute active</h3>
       <p>Écouter sans préparer sa réponse. Accueillir les mots de l'autre sans jugement ni interprétation hâtive.</p>
     </div>
 
-    <div class="outil-card">
-      <h3>La parole juste</h3>
-      <p>Dire ce qui est vrai, avec bienveillance. Choisir ses mots comme on choisit ses gestes : avec attention et respect.</p>
+    <div class="outil-card outil-card-clickable" onclick="openPdfModal('ebooks/Le_Feedback.pdf')" role="button" tabindex="0" onkeydown="if(event.key==='Enter')openPdfModal('ebooks/Le_Feedback.pdf')">
+      <h3>Le feedback</h3>
+      <p>Donner un retour honnête et constructif, au bon moment, pour faire grandir la relation plutôt que la fragiliser.</p>
     </div>
 
-    <div class="outil-card">
-      <h3>La reformulation</h3>
-      <p>Renvoyer à l'autre ce que l'on a compris, pour vérifier l'accord et montrer que l'on a vraiment entendu.</p>
+    <div class="outil-card outil-card-clickable" onclick="openPdfModal('ebooks/Art_du_Questionnement.pdf')" role="button" tabindex="0" onkeydown="if(event.key==='Enter')openPdfModal('ebooks/Art_du_Questionnement.pdf')">
+      <h3>L'art du questionnement</h3>
+      <p>Poser les bonnes questions, ouvertes et sincères, pour ouvrir l'échange plutôt que le refermer.</p>
     </div>
 
-    <div class="outil-card">
-      <h3>L'empathie</h3>
-      <p>Se mettre à la place de l'autre sans se perdre soi-même. Ressentir sans fusionner, comprendre sans juger.</p>
-    </div>
-
-    <div class="outil-card">
-      <h3>L'assertivité</h3>
-      <p>Affirmer ses besoins et ses limites avec calme et clarté, sans agressivité ni soumission.</p>
-    </div>
-
-    <div class="outil-card">
-      <h3>La communication non violente</h3>
-      <p>Observer sans juger, exprimer ses émotions, identifier ses besoins et formuler une demande claire et ouverte.</p>
-    </div>
-  </div>
-</section>
-
-<!-- SECTION INDIVIDU -->
-<section id="individu" class="level-section">
-  <div class="level-container">
-    <div class="level-intro">
-      <span class="section-eyebrow">Premier niveau</span>
-      <h2>L'<em>Individu</em></h2>
-      <p>Tout commence par soi. Avant de communiquer avec les autres, vous communiquez avec vous-même — à travers vos pensées, vos émotions et vos croyances. La qualité de votre dialogue intérieur détermine la qualité de votre relation à l'environnement.</p>
-      <p>Comprendre son propre style de communication, ses déclencheurs émotionnels et ses schémas inconscients est le socle de toute transformation relationnelle durable.</p>
-      <div class="tag-list">
-        <span class="tag">Connaissance de soi</span>
-        <span class="tag">Dialogue intérieur</span>
-        <span class="tag">Émotions</span>
-        <span class="tag">Croyances</span>
-      </div>
-    </div>
-
-    <div class="cards-grid">
-      <div class="card">
-        <h3>Le style de communication</h3>
-        <p>Chaque individu possède un style dominant — assertif, passif, agressif ou passif-agressif. Identifier le vôtre est la première étape vers un changement conscient.</p>
-      </div>
-
-      <div class="card">
-        <h3>La régulation émotionnelle</h3>
-        <p>Vos émotions sont des informations. Apprendre à les identifier, les comprendre et les exprimer transforme vos réactions automatiques en réponses choisies.</p>
-      </div>
-
-      <div class="card">
-        <h3>Les croyances limitantes</h3>
-        <p>Certaines convictions inconscientes sabotent vos échanges. Les identifier et les remettre en question ouvre la voie à une communication plus libre et authentique.</p>
-      </div>
-
-      <div class="card">
-        <h3>Les valeurs fondamentales</h3>
-        <p>Connaître ses valeurs profondes permet de communiquer avec cohérence et intégrité, même dans les situations de tension ou de conflit.</p>
-      </div>
-    </div>
-
-    <blockquote class="quote">
-      "La façon dont nous communiquons avec les autres et avec nous-mêmes détermine la qualité de notre relation au monde."
-    </blockquote>
-  </div>
-</section>
-
-<!-- SECTION DYADE -->
-<section id="dyade" class="level-section level-dark">
-  <div class="level-container">
-    <div class="level-intro">
-      <span class="section-eyebrow">Deuxième niveau</span>
-      <h2>La <em>Dyade</em></h2>
-      <p>La dyade — la relation entre deux personnes — est l'unité fondamentale de toute vie sociale. C'est ici que se joue l'essentiel : l'écoute, l'empathie, la confrontation bienveillante et la co-construction de sens.</p>
-      <p>Chaque relation à deux possède sa propre dynamique, ses zones d'harmonie et ses zones de friction. Comprendre ces mécanismes, c'est apprendre à naviguer avec fluidité dans vos relations les plus importantes.</p>
-      <div class="tag-list">
-        <span class="tag">Écoute active</span>
-        <span class="tag">Empathie</span>
-        <span class="tag">Feedback</span>
-        <span class="tag">Gestion des conflits</span>
-      </div>
-    </div>
-
-    <div class="cards-grid">
-      <div class="card">
-        <h3>L'écoute active</h3>
-        <p>Écouter vraiment, c'est bien plus qu'entendre. C'est être présent, suspendre son jugement et accueillir l'autre dans ce qu'il vit, sans chercher à répondre immédiatement.</p>
-      </div>
-
-      <div class="card">
-        <h3>L'empathie relationnelle</h3>
-        <p>Se mettre à la place de l'autre sans se perdre soi-même. L'empathie vraie est un équilibre délicat entre connexion et clarté personnelle.</p>
-      </div>
-
-      <div class="card">
-        <h3>Le feedback constructif</h3>
-        <p>Dire les choses avec justesse, ni trop, ni trop peu. Un feedback bien donné nourrit la relation au lieu de la fragiliser.</p>
-      </div>
-
-      <div class="card">
-        <h3>L'effet miroir</h3>
-        <p>Ce qui nous dérange chez l'autre révèle souvent quelque chose de nous. La dyade est un miroir puissant pour la connaissance de soi.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- SECTION COLLECTIF -->
-<section id="collectif" class="level-section">
-  <div class="level-container">
-    <div class="level-intro">
-      <span class="section-eyebrow">Troisième niveau</span>
-      <h2>Le <em>Collectif</em></h2>
-      <p>Au-delà de la relation à deux, le collectif obéit à ses propres lois. Groupes, équipes, familles, organisations — chaque ensemble humain développe une culture, des rôles implicites et des dynamiques invisibles qui influencent chaque membre.</p>
-      <p>Apprendre à lire ces dynamiques collectives, c'est acquérir la capacité d'agir avec justesse dans tous les contextes de groupe.</p>
-      <div class="tag-list">
-        <span class="tag">Dynamiques de groupe</span>
-        <span class="tag">Leadership</span>
-        <span class="tag">Culture</span>
-        <span class="tag">Cohésion</span>
-      </div>
-    </div>
-
-    <div class="cards-grid">
-      <div class="card">
-        <h3>Les rôles implicites</h3>
-        <p>Dans tout groupe, chacun occupe une place non dite. Identifier son rôle et celui des autres permet de comprendre les tensions et de rééquilibrer les dynamiques.</p>
-      </div>
-
-      <div class="card">
-        <h3>La culture collective</h3>
-        <p>Chaque groupe développe ses propres codes, valeurs et habitudes. En comprendre la culture, c'est pouvoir y contribuer avec authenticité.</p>
-      </div>
-
-      <div class="card">
-        <h3>La communication systémique</h3>
-        <p>Dans un système, tout est lié. Un changement de comportement chez un membre impacte l'ensemble du groupe — pour le meilleur ou pour le pire.</p>
-      </div>
-
-      <div class="card">
-        <h3>Le leadership relationnel</h3>
-        <p>Mener un groupe ne s'impose pas — cela se cultive. Le vrai leadership naît de la qualité des relations et de la confiance construite dans le temps.</p>
-      </div>
+    <div class="outil-card outil-card-clickable" onclick="openPdfModal('ebooks/La_Responsabilite.pdf')" role="button" tabindex="0" onkeydown="if(event.key==='Enter')openPdfModal('ebooks/La_Responsabilite.pdf')">
+      <h3>La responsabilité</h3>
+      <p>Reconnaître sa part dans chaque échange, sans se blâmer ni blâmer l'autre, pour agir plutôt que subir.</p>
     </div>
   </div>
 </section>
@@ -396,7 +329,18 @@
     document.getElementById('hamburger').classList.remove('open');
     document.body.style.overflow = '';
   }
-  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeMenu(); closePdfModal(); } });
+
+  function openPdfModal(url) {
+    document.getElementById('pdfModalFrame').src = url;
+    document.getElementById('pdfModal').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closePdfModal() {
+    document.getElementById('pdfModal').classList.remove('open');
+    document.getElementById('pdfModalFrame').src = '';
+    document.body.style.overflow = '';
+  }
 </script>
 
 </body>
