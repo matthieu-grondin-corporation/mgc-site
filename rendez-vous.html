@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MGC — Rendez-vous</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+  <style>
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 8px;
+      z-index: 1001;
+    }
+    .hamburger span {
+      display: block;
+      width: 25px;
+      height: 2px;
+      background: #fff;
+      border-radius: 2px;
+      transition: all 0.3s ease;
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100vh;
+      background: rgba(10, 8, 20, 0.98);
+      backdrop-filter: blur(20px);
+      z-index: 999;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 0;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .mobile-menu.open { display: flex; opacity: 1; }
+    .mobile-menu a {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      color: #fff;
+      text-decoration: none;
+      padding: 1rem 2rem;
+      opacity: 0.85;
+      transition: opacity 0.2s, color 0.2s;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      width: 100%;
+      text-align: center;
+    }
+    .mobile-menu a:hover { opacity: 1; color: #c9a96e; }
+    .mobile-menu a.btn-mobile-rdv {
+      margin-top: 1.5rem;
+      background: linear-gradient(135deg, #c9a96e, #a07840);
+      color: #0a0814;
+      border-radius: 50px;
+      font-size: 1.1rem;
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      padding: 1rem 2.5rem;
+      width: auto;
+      border-bottom: none;
+      opacity: 1;
+    }
+    .mobile-menu a.btn-mobile-rdv:hover { background: linear-gradient(135deg, #d4b87a, #b08850); color: #0a0814; }
+    @media (max-width: 768px) {
+      .hamburger { display: flex; }
+      #nav .nav-links { display: none; }
+      #nav .btn-nav { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- MENU MOBILE OVERLAY -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html" onclick="closeMenu()">Accueil</a>
+  <a href="outil-relationnel.html" onclick="closeMenu()">Outil Relationnel</a>
+  <a href="enneagramme.html" onclick="closeMenu()">L'Ennéagramme</a>
+  <a href="coaching.html" onclick="closeMenu()">Coaching</a>
+  <a href="test.html" onclick="closeMenu()">Test</a>
+  <a href="apropos.html" onclick="closeMenu()">À propos</a>
+  <a href="rendez-vous.html" class="btn-mobile-rdv" onclick="closeMenu()">Rendez-vous</a>
+</div>
+
+<nav id="nav">
+  <a href="index.html" class="logo">MGC</a>
+  <ul class="nav-links">
+    <li><a href="index.html">Accueil</a></li>
+    <li><a href="outil-relationnel.html">Outil Relationnel</a></li>
+    <li><a href="enneagramme.html">L'Ennéagramme</a></li>
+    <li><a href="coaching.html">Coaching</a></li>
+    <li><a href="test.html">Test</a></li>
+    <li><a href="apropos.html">À propos</a></li>
+  </ul>
+  <a href="rendez-vous.html" class="btn-nav active">Rendez-vous</a>
+  <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <span class="section-label reveal">Votre accompagnement</span>
+  <h1 class="reveal d1">Prendre <em>rendez-vous</em></h1>
+  <p class="reveal d2">Choisissez le type d'accompagnement qui vous correspond et envoyez votre demande. Je vous répondrai sous 48h.</p>
+</section>
+
+<!-- CONTENU RDV -->
+<div class="rdv-wrap">
+  <div class="reveal">
+    <div class="rdv-section-title"><span class="icon">📅</span> Choisissez votre séance</div>
+  </div>
+  <div class="seances-grid reveal d1">
+    <div class="seance-card selected" onclick="selectSeance(this, 'Séance découverte')">
+      <div class="seance-top">
+        <span class="seance-name">Séance découverte</span>
+        <span class="seance-tag">Gratuit</span>
+      </div>
+      <div class="seance-duration">⏱ 30 min</div>
+      <p class="seance-desc">Un premier échange gratuit pour explorer vos besoins et voir si l'accompagnement vous correspond.</p>
+    </div>
+    <div class="seance-card" onclick="selectSeance(this, 'Coaching individuel')">
+      <div class="seance-top">
+        <span class="seance-name">Coaching individuel</span>
+        <span class="seance-tag">Individuel</span>
+      </div>
+      <div class="seance-duration">⏱ 1h</div>
+      <p class="seance-desc">Une séance de coaching personnalisée centrée sur votre communication et vos objectifs relationnels.</p>
+    </div>
+    <div class="seance-card" onclick="selectSeance(this, 'Bilan ennéagramme')">
+      <div class="seance-top">
+        <span class="seance-name">Bilan ennéagramme</span>
+        <span class="seance-tag">Analyse</span>
+      </div>
+      <div class="seance-duration">⏱ 1h30</div>
+      <p class="seance-desc">Un bilan complet de votre profil ennéagramme avec un plan d'action pour votre communication.</p>
+    </div>
+    <div class="seance-card" onclick="selectSeance(this, 'Accompagnement d\'équipe')">
+      <div class="seance-top">
+        <span class="seance-name">Accompagnement d'équipe</span>
+        <span class="seance-tag">Équipe</span>
+      </div>
+      <div class="seance-duration">⏱ Sur mesure</div>
+      <p class="seance-desc">Un programme adapté pour améliorer la communication au sein de votre équipe ou organisation.</p>
+    </div>
+  </div>
+
+  <div class="rdv-section-title reveal"><span class="icon">👤</span> Vos coordonnées</div>
+  <div class="form-card reveal d1">
+    <form id="rdvForm" action="https://formsubmit.co/matthieu-grondin@hotmail.fr" method="POST">
+      <input type="hidden" name="_subject" value="Nouvelle demande de rendez-vous — MGC"/>
+      <input type="hidden" name="_captcha" value="false"/>
+      <input type="hidden" name="_next" value="merci.html"/>
+      <input type="hidden" name="séance" id="seanceInput" value="Séance découverte"/>
+      <div class="form-grid">
+        <div class="form-group">
+          <label>Nom complet <span>*</span></label>
+          <div class="input-wrap">
+            <span class="input-icon">👤</span>
+            <input type="text" name="nom" placeholder="Votre nom" required/>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Email <span>*</span></label>
+          <div class="input-wrap">
+            <span class="input-icon">✉️</span>
+            <input type="email" name="email" placeholder="votre@email.com" required/>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Téléphone <span style="color:var(--grey)">(optionnel)</span></label>
+          <div class="input-wrap">
+            <span class="input-icon">📱</span>
+            <input type="tel" name="telephone" placeholder="+33 6 00 00 00 00"/>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Disponibilités préférées</label>
+          <div class="input-wrap">
+            <span class="input-icon">📅</span>
+            <select name="disponibilite">
+              <option value="">Choisissez un créneau</option>
+              <option>Matin (8h–12h)</option>
+              <option>Déjeuner (12h–14h)</option>
+              <option>Après-midi (14h–18h)</option>
+              <option>Soir (18h–20h)</option>
+              <option>Flexible / Sur mesure</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group full">
+          <label>Jours préférés</label>
+          <div class="dispo-grid" id="dispoGrid">
+            <div class="dispo-btn" onclick="toggleDispo(this)">Lundi</div>
+            <div class="dispo-btn" onclick="toggleDispo(this)">Mardi</div>
+            <div class="dispo-btn" onclick="toggleDispo(this)">Mercredi</div>
+            <div class="dispo-btn" onclick="toggleDispo(this)">Jeudi</div>
+            <div class="dispo-btn" onclick="toggleDispo(this)">Vendredi</div>
+            <div class="dispo-btn" onclick="toggleDispo(this)">Samedi</div>
+            <div class="dispo-btn" onclick="toggleDispo(this)">Flexible</div>
+          </div>
+          <input type="hidden" name="jours" id="joursInput"/>
+        </div>
+        <div class="form-group full">
+          <label>Votre demande <span>*</span></label>
+          <div class="input-wrap">
+            <textarea name="message" placeholder="Décrivez brièvement ce sur quoi vous souhaitez travailler..." required></textarea>
+          </div>
+        </div>
+      </div>
+      <div class="form-submit">
+        <button type="submit" class="btn-submit">Envoyer ma demande <span>✈️</span></button>
+      </div>
+    </form>
+    <div class="success-msg" id="successMsg">
+      <div class="s-icon">✅</div>
+      <h3>Demande envoyée !</h3>
+      <p>Je vous répondrai dans les 48h pour confirmer votre rendez-vous.</p>
+    </div>
+  </div>
+</div>
+
+<!-- COORDONNÉES -->
+<section class="coord-section">
+  <div class="coord-inner">
+    <span class="section-label reveal">Me retrouver</span>
+    <h2 class="reveal d1">Mes <em>coordonnées</em></h2>
+    <div class="coord-grid reveal d2">
+      <div class="coord-item">
+        <div class="coord-icon">📧</div>
+        <div class="coord-label">Email</div>
+        <div class="coord-value"><a href="mailto:matthieu-grondin@hotmail.fr">matthieu-grondin@hotmail.fr</a></div>
+      </div>
+      <div class="coord-item">
+        <div class="coord-icon">📱</div>
+        <div class="coord-label">Téléphone</div>
+        <div class="coord-value"><a href="tel:+33623437697">06 23 43 76 97</a></div>
+      </div>
+      <div class="coord-item">
+        <div class="coord-icon">📍</div>
+        <div class="coord-label">Lyon</div>
+        <div class="coord-value">En présentiel & visioconférence</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FORMULAIRE CONTACT -->
+<section class="contact-section">
+  <div class="contact-card reveal">
+    <span class="section-label">Contact</span>
+    <h2>Une question ? <em>Écrivez-moi</em></h2>
+    <p>Je vous réponds dans les 48h.</p>
+    <form action="https://formsubmit.co/matthieu-grondin@hotmail.fr" method="POST">
+      <input type="hidden" name="_subject" value="Message via MGC"/>
+      <input type="hidden" name="_captcha" value="false"/>
+      <div class="form-grid" style="margin-bottom:1.2rem;">
+        <div class="form-group">
+          <label>Nom <span>*</span></label>
+          <div class="input-wrap">
+            <span class="input-icon">👤</span>
+            <input type="text" name="nom" placeholder="Votre nom" required/>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Email <span>*</span></label>
+          <div class="input-wrap">
+            <span class="input-icon">✉️</span>
+            <input type="email" name="email" placeholder="votre@email.com" required/>
+          </div>
+        </div>
+        <div class="form-group full">
+          <label>Message <span>*</span></label>
+          <div class="input-wrap">
+            <textarea name="message" placeholder="Décrivez votre demande ou vos questions..." required></textarea>
+          </div>
+        </div>
+      </div>
+      <div class="form-submit">
+        <button type="submit" class="btn-submit">Envoyer </button>
+      </div>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <a href="index.html" class="logo">MGC</a>
+    <p>Un accompagnement bienveillant pour maîtriser l'art de la communication relationnelle.</p>
+  </div>
+  <div>
+    <h4>Services</h4>
+    <ul>
+      <li><a href="coaching.html">Coaching individuel</a></li>
+      <li><a href="enneagramme.html">L'Ennéagramme</a></li>
+      <li><a href="test.html">Test interactif</a></li>
+    </ul>
+  </div>
+  <div>
+    <h4>Navigation</h4>
+    <ul>
+      <li><a href="apropos.html">À propos</a></li>
+      <li><a href="rendez-vous.html">Rendez-vous</a></li>
+      <li><a href="#">Mentions légales</a></li>
+    </ul>
+  </div>
+</footer>
+<div class="footer-copy">© 2026 MGC — Communication Relationnelle · Tous droits réservés</div>
+
+<script>
+  window.addEventListener('scroll', () => {
+    document.getElementById('nav').classList.toggle('scrolled', scrollY > 60);
+  });
+  const obs = new IntersectionObserver(entries => entries.forEach(e => {
+    if (e.isIntersecting) e.target.classList.add('visible');
+  }), { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+  function selectSeance(el, name) {
+    document.querySelectorAll('.seance-card').forEach(c => c.classList.remove('selected'));
+    el.classList.add('selected');
+    document.getElementById('seanceInput').value = name;
+  }
+
+  function toggleDispo(el) {
+    el.classList.toggle('active');
+    const actifs = [...document.querySelectorAll('.dispo-btn.active')].map(b => b.textContent);
+    document.getElementById('joursInput').value = actifs.join(', ');
+  }
+
+  function toggleMenu() {
+    const menu = document.getElementById('mobileMenu');
+    const burger = document.getElementById('hamburger');
+    menu.classList.toggle('open');
+    burger.classList.toggle('open');
+    document.body.style.overflow = menu.classList.contains('open') ? 'hidden' : '';
+  }
+  function closeMenu() {
+    document.getElementById('mobileMenu').classList.remove('open');
+    document.getElementById('hamburger').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
+</script>
+
+</body>
+</html>

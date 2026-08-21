@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mentions Légales, RGPD & CGV - MGC</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    /* ===== VARIABLES CSS (reprises de style.css) ===== */
+    :root {
+      --bg: #0a0814;
+      --bg-soft: #14101f;
+      --bg-card: rgba(255, 255, 255, 0.03);
+      --border: rgba(201, 169, 110, 0.15);
+      --border-hover: rgba(201, 169, 110, 0.4);
+      --gold: #c9a96e;
+      --gold-light: #d4b87a;
+      --gold-dark: #a07840;
+      --text: #f0ebe0;
+      --grey: #9a9080;
+      --grey-soft: #6a6258;
+      --serif: 'Playfair Display', serif;
+      --sans: 'Inter', sans-serif;
+      --radius: 16px;
+      --transition: 0.3s ease;
+    }
+
+    /* ===== RESET & BASE ===== */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--sans);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.8;
+      overflow-x: hidden;
+    }
+    a { color: var(--gold); text-decoration: none; transition: var(--transition); }
+    a:hover { color: var(--gold-light); }
+    ul { list-style: none; }
+    img { max-width: 100%; display: block; }
+
+    /* ===== HEADER (BANDEAU DIFFÉRENT) ===== */
+    header {
+      background: linear-gradient(135deg, var(--bg-soft), var(--bg));
+      padding: 2rem 3rem;
+      text-align: center;
+      border-bottom: 1px solid var(--border);
+    }
+    header h1 {
+      font-family: var(--serif);
+      font-size: 2.5rem;
+      color: var(--gold);
+      margin-bottom: 0.5rem;
+    }
+    header p {
+      color: var(--grey);
+      font-size: 1.1rem;
+    }
+
+    /* ===== BARRE D'ONGLETS ===== */
+    .legal-tabs {
+      display: flex;
+      justify-content: center;
+      gap: 1px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      margin: 2rem auto;
+      max-width: 800px;
+      padding: 0.5rem;
+    }
+    .legal-tab {
+      flex: 1;
+      text-align: center;
+      padding: 0.8rem 1rem;
+      background: transparent;
+      border: none;
+      color: var(--grey);
+      cursor: pointer;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      border-radius: var(--radius) - 0.5rem;
+    }
+    .legal-tab.active {
+      background: var(--gold);
+      color: var(--bg);
+      font-weight: 600;
+    }
+    .legal-tab:hover:not(.active) {
+      background: rgba(201, 169, 110, 0.1);
+    }
+
+    /* ===== MAIN CONTENT ===== */
+    main {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 2rem 3rem;
+    }
+
+    /* Styles pour les sections légales (inchangés) */
+    .legal-section {
+      margin-bottom: 4rem;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .legal-section.reveal {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .legal-section h2 {
+      font-family: var(--serif);
+      font-size: 1.8rem;
+      color: var(--gold);
+      margin-bottom: 1.5rem;
+      position: relative;
+      padding-bottom: 0.5rem;
+    }
+    .legal-section h2::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 50px;
+      height: 2px;
+      background: var(--gold);
+    }
+    .legal-section p, .legal-section ul {
+      color: var(--grey);
+      margin-bottom: 1.2rem;
+      font-size: 1rem;
+    }
+    .legal-section ul {
+      padding-left: 1.2rem;
+    }
+    .legal-section li {
+      margin-bottom: 0.8rem;
+    }
+
+    /* ===== FOOTER (identique à ton style) ===== */
+    footer {
+      background: var(--bg-soft);
+      padding: 3rem 2rem 2rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+      border-top: 1px solid var(--border);
+    }
+    footer > div {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .logo {
+      font-family: var(--serif);
+      font-size: 1.8rem;
+      color: var(--gold);
+      text-decoration: none;
+    }
+    footer p {
+      color: var(--grey);
+      font-size: 0.9rem;
+    }
+    footer h4 {
+      color: var(--text);
+      font-size: 1.1rem;
+      margin-bottom: 1rem;
+    }
+    footer ul {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    footer a {
+      color: var(--grey);
+      font-size: 0.9rem;
+    }
+    footer a:hover {
+      color: var(--gold);
+    }
+    .footer-copy {
+      background: var(--bg-soft);
+      padding: 1rem 2rem;
+      text-align: center;
+      color: var(--grey-soft);
+      font-size: 0.8rem;
+    }
+  </style>
+</head>
+<body>
+  <!-- ===== HEADER ===== -->
+  <header>
+    <h1>Mentions Légales, RGPD & CGV</h1>
+    <p>Toutes les informations légales et contractuelles pour votre accompagnement.</p>
+    <!-- 👇 BOUTON ACCUEIL (à ajouter ici) -->
+  <a href="index.html" class="btn-home">Accueil</a>
+  </header>
+
+  <!-- ===== BARRE D'ONGLETS ===== -->
+  <nav class="legal-tabs">
+    <button class="legal-tab active" data-target="mentions-legales">Mentions Légales</button>
+    <button class="legal-tab" data-target="rgpd">RGPD</button>
+    <button class="legal-tab" data-target="cgv">Conditions de Vente</button>
+  </nav>
+
+  <!-- ===== CONTENU LÉGAL (SECTIONS) ===== -->
+  <main>
+    <!-- SECTION 1 : Mentions Légales -->
+    <section id="mentions-legales" class="legal-section reveal">
+      <h2>Mentions Légales</h2>
+      <p>En vigueur au <strong>1er janvier 2026</strong></p>
+      <p>Conformément aux dispositions des <a href="https://www.cnil.fr" target="_blank">Articles 19 de la Loi n° 2004-575 du 21 juin 2004</a> pour la Confiance dans l’économie numérique, dite « LCEN », il est porté à la connaissance des utilisateurs et visiteurs, ci-après l’« Utilisateur », du site <a href="https://mgc.com">https://mgc.com</a> les présentes mentions légales.</p>
+
+      <h3>1. Édition du site</h3>
+      <p>Le site <a href="https://mgc.com">https://mgc.com</a> est édité par :</p>
+      <ul>
+        <li><strong>MGC</strong></li>
+        <li>Adresse : [Votre adresse]</li>
+        <li>Téléphone : [Votre numéro]</li>
+        <li>Email : <a href="mailto:contact@mgc.com">contact@mgc.com</a></li>
+      </ul>
+
+      <h3>2. Hébergement du site</h3>
+      <p>Le site est hébergé par :</p>
+      <ul>
+        <li><strong>Nom de l'hébergeur</strong></li>
+        <li>Adresse : [Adresse de l'hébergeur]</li>
+      </ul>
+
+      <h3>3. Directeur de la publication</h3>
+      <p>Le Directeur de la publication du site est : [Nom du responsable].</p>
+
+      <h3>4. Propriété intellectuelle</h3>
+      <p>L’Utilisateur doit obtenir l’autorisation préalable de MGC pour toute reproduction, publication, adaptation de tout ou partie des éléments du site, à l’exception de l’utilisation privée.</p>
+      <p>Toute utilisation à des fins commerciales ou publicitaires est interdite.</p>
+    </section>
+
+    <!-- SECTION 2 : RGPD -->
+    <section id="rgpd" class="legal-section" style="display: none;">
+      <h2>Politique de Confidentialité (RGPD)</h2>
+      <p>Conformément au <a href="https://eur-lex.europa.eu/legal-content/FR/TXT/?uri=CELEX%3A32016R0679" target="_blank">Règlement Général sur la Protection des Données (RGPD)</a>, MGC s’engage à protéger vos données personnelles.</p>
+
+      <h3>1. Données collectées</h3>
+      <p>Nous collectons les données suivantes :</p>
+      <ul>
+        <li>Nom, prénom</li>
+        <li>Adresse email</li>
+        <li>Numéro de téléphone (si vous nous contactez)</li>
+        <li>Données de navigation (cookies)</li>
+      </ul>
+
+      <h3>2. Finalités de la collecte</h3>
+      <p>Vos données sont utilisées uniquement pour :</p>
+      <ul>
+        <li>Vous répondre via email ou téléphone.</li>
+        <li>Améliorer notre site et nos services.</li>
+        <li>Envoyer des newsletters (si vous vous y inscrivez).</li>
+      </ul>
+
+      <h3>3. Durée de conservation</h3>
+      <p>Vos données sont conservées pendant :</p>
+      <ul>
+        <li>3 ans pour les données de contact.</li>
+        <li>1 an pour les cookies.</li>
+      </ul>
+
+      <h3>4. Vos droits</h3>
+      <p>Conformément au RGPD, vous disposez des droits suivants :</p>
+      <ul>
+        <li>Droit d’accès : Vous pouvez demander quelles données nous détenons sur vous.</li>
+        <li>Droit de rectification : Vous pouvez corriger vos données.</li>
+        <li>Droit à l’oubli : Vous pouvez demander la suppression de vos données.</li>
+        <li>Droit d’opposition : Vous pouvez vous opposer au traitement de vos données.</li>
+      </ul>
+      <p>Pour exercer ces droits, contactez-nous à : <a href="mailto:contact@mgc.com">contact@mgc.com</a>.</p>
+    </section>
+
+    <!-- SECTION 3 : Conditions Générales de Vente -->
+    <section id="cgv" class="legal-section" style="display: none;">
+      <h2>Conditions Générales de Vente</h2>
+
+      <h3>1. Objet</h3>
+      <p>Les présentes conditions générales de vente (CGV) régissent les relations entre MGC et ses clients pour la prestation de services de coaching et d'accompagnement en communication relationnelle.</p>
+
+      <h3>2. Commande et confirmation</h3>
+      <p>Toute commande effectuée sur ce site est soumise à validation par MGC. Une confirmation vous sera envoyée par email sous 48h.</p>
+
+      <h3>3. Paiement</h3>
+      <p>Les paiements s'effectuent par virement bancaire ou carte bancaire. Aucun remboursement ne sera effectué en cas d'annulation moins de 7 jours avant la séance.</p>
+
+      <h3>4. Annulation</h3>
+      <p>En cas d'annulation, merci de nous prévenir au moins 7 jours à l'avance par email à <a href="mailto:contact@mgc.com">contact@mgc.com</a>.</p>
+
+      <h3>5. Responsabilité</h3>
+      <p>MGC ne peut être tenu responsable des résultats obtenus par le client suite à un accompagnement. Les séances de coaching ne constituent pas un substitut à un suivi médical ou psychologique.</p>
+
+      <h3>6. Loi applicable</h3>
+      <p>Les présentes CGV sont régies par le droit français. Tout litige sera soumis aux tribunaux compétents de [Ville].</p>
+    </section>
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <div>
+      <a href="index.html" class="logo">MGC</a>
+      <p>Un accompagnement bienveillant pour maîtriser l'art de la communication relationnelle.</p>
+    </div>
+    <div>
+      <h4>Services</h4>
+      <ul>
+        <li><a href="coaching.html">Coaching individuel</a></li>
+        <li><a href="enneagramme.html">L'Ennéagramme</a></li>
+        <li><a href="test.html">Test interactif</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Navigation</h4>
+      <ul>
+        <li><a href="apropos.html">À propos</a></li>
+        <li><a href="rendez-vous.html">Rendez-vous</a></li>
+        <li><a href="legal-page.html">Mentions légales</a></li>
+      </ul>
+    </div>
+  </footer>
+  <div class="footer-copy">© 2026 MGC — Communication Relationnelle · Tous droits réservés</div>
+
+  <!-- ===== JAVASCRIPT POUR LES ONGLETS ===== -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Gestion des onglets
+      const tabs = document.querySelectorAll('.legal-tab');
+      const sections = document.querySelectorAll('.legal-section');
+
+      tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+          // Désactive tous les onglets
+          tabs.forEach(t => t.classList.remove('active'));
+          // Active l'onglet cliqué
+          tab.classList.add('active');
+
+          // Cache toutes les sections
+          sections.forEach(section => {
+            section.style.display = 'none';
+          });
+
+          // Affiche la section correspondante
+          const targetId = tab.getAttribute('data-target');
+          const targetSection = document.getElementById(targetId);
+          if (targetSection) {
+            targetSection.style.display = 'block';
+            targetSection.classList.add('reveal'); // Réactive l'animation
+          }
+        });
+      });
+
+      // Animation de reveal au scroll (pour la section active)
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('reveal');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1 });
+
+      // Applique l'observer à la section active
+      const activeSection = document.querySelector('.legal-section[style="display: block;"]');
+      if (activeSection) {
+        activeSection.style.opacity = '0';
+        activeSection.style.transform = 'translateY(20px)';
+        observer.observe(activeSection);
+      }
+    });
+  </script>
+</body>
+</html>

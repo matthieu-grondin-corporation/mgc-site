@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MGC — L'art de la communication</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+  <style>
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 8px;
+      z-index: 1001;
+    }
+    .hamburger span {
+      display: block;
+      width: 25px;
+      height: 2px;
+      background: #fff;
+      border-radius: 2px;
+      transition: all 0.3s ease;
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100vh;
+      background: rgba(10, 8, 20, 0.98);
+      backdrop-filter: blur(20px);
+      z-index: 999;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .mobile-menu.open { display: flex; opacity: 1; }
+    .mobile-menu a {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      color: #fff;
+      text-decoration: none;
+      padding: 1rem 2rem;
+      opacity: 0.85;
+      transition: opacity 0.2s, color 0.2s;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      width: 100%;
+      text-align: center;
+    }
+    .mobile-menu a:hover { opacity: 1; color: #c9a96e; }
+    .mobile-menu a.btn-mobile-rdv {
+      margin-top: 1.5rem;
+      background: linear-gradient(135deg, #c9a96e, #a07840);
+      color: #0a0814;
+      border-radius: 50px;
+      font-size: 1.1rem;
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      padding: 1rem 2.5rem;
+      width: auto;
+      border-bottom: none;
+      opacity: 1;
+    }
+    .mobile-menu a.btn-mobile-rdv:hover { background: linear-gradient(135deg, #d4b87a, #b08850); color: #0a0814; }
+    @media (max-width: 768px) {
+      .hamburger { display: flex; }
+      #nav .nav-links { display: none; }
+      #nav .btn-nav { display: none; }
+    }
+    /* Masque toutes les icônes dans les cartes */
+    .outil-icon,
+    .card-icon {
+      display: none;
+      
+      /* ===== CORRECTION DES CARTES E-BOOK (alignement à gauche + espacements) ===== */
+.ebooks-section {
+  padding: 2rem 0;
+  background: transparent;
+}
+
+.ebooks-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.ebook-card {
+  background: #1a1a2e; /* Fond bleu foncé */
+  border-radius: 12px;
+  padding: 1.5rem;
+  border: 1px solid #3a3a5a; /* Bordure légère */
+  display: flex;
+  flex-direction: column;
+  min-height: 320px; /* Hauteur fixe pour homogénéité */
+  justify-content: flex-start; /* Alignement en haut */
+  position: relative;
+}
+
+.ebook-image {
+  height: 100px;
+  width: 100%;
+  background-size: cover;
+  background-position: center;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+.ebook-card h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 0 0 0.7rem 0 !important; /* Espacement sous le titre */
+  line-height: 1.3;
+  color: #fff;
+}
+
+.ebook-card p {
+  font-size: 0.85rem;
+  color: #a0a0a0; /* Texte gris clair */
+  margin: 0 0 1rem 0 !important; /* Espacement sous la description */
+  line-height: 1.4;
+  flex-grow: 1; /* Prend l'espace restant */
+}
+
+.ebook-price {
+  font-weight: 600;
+  color: #f4d03f; /* Or */
+  margin: 0 0 1.2rem 0 !important; /* Espacement sous le prix */
+  font-size: 1.1rem;
+}
+
+.btn-primary, .btn-secondary {
+  margin: 0 !important;
+  width: 100%;
+  padding: 0.7rem 1rem !important;
+  font-size: 0.9rem;
+  text-align: center;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.btn-primary {
+  background: #f4d03f; /* Bouton or */
+  color: #000;
+  border: none;
+}
+
+.btn-primary:hover {
+  background: #e6c229;
+}
+
+.btn-secondary {
+  background: transparent;
+  color: #fff;
+  border: 1px solid #3a3a5a;
+}
+
+.btn-secondary:hover {
+  background: #3a3a5a;
+}
+
+/* Style pour "Bientôt disponible" */
+.coming-soon {
+  display: block;
+  color: #a0a0a0; /* Gris clair */
+  font-size: 0.8rem;
+  margin-top: 0.3rem;
+  font-style: italic;
+}
+    }
+  </style>
+</head>
+<body>
+
+<!-- MENU MOBILE OVERLAY -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html" onclick="closeMenu()">Accueil</a>
+  <a href="outil-relationnel.html" onclick="closeMenu()">Outil Relationnel</a>
+  <a href="enneagramme.html" onclick="closeMenu()">L'Ennéagramme</a>
+  <a href="coaching.html" onclick="closeMenu()">Coaching</a>
+  <a href="test.html" onclick="closeMenu()">Test</a>
+  <a href="apropos.html" onclick="closeMenu()">À propos</a>
+  <a href="rendez-vous.html" class="btn-mobile-rdv" onclick="closeMenu()">Rendez-vous</a>
+</div>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="index.html" class="logo">MGC</a>
+  <ul class="nav-links">
+    <li><a href="index.html">Accueil</a></li>
+    <li><a href="outil-relationnel.html" class="active">Outil Relationnel</a></li>
+    <li><a href="enneagramme.html">L'Ennéagramme</a></li>
+    <li><a href="coaching.html">Coaching</a></li>
+    <li><a href="test.html">Test</a></li>
+    <li><a href="apropos.html">À propos</a></li>
+  </ul>
+  <a href="rendez-vous.html" class="btn-nav">Rendez-vous</a>
+  <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content reveal visible">
+    <span class="hero-eyebrow">L'outil fondamental</span>
+    <h1>L'art de la <em>communication</em></h1>
+    <p>Communiquer, ce n'est pas seulement parler. C'est créer un pont entre deux mondes intérieurs — un système vivant qui relie l'individu à lui-même, aux autres et aux groupes qu'il forme.</p>
+    <a href="#outils" class="btn-primary">Explorer l'outil →</a>
+  </div>
+</section>
+
+<!-- LES OUTILS ESSENTIELS -->
+<section id="outils" class="outils-section">
+  <h2>Les outils <em>essentiels</em></h2>
+  <p class="section-sub">Voici les outils fondamentaux pour transformer vos échanges en véritables rencontres.</p>
+
+  <div class="outils-grid">
+    <div class="outil-card">
+      <h3>L'écoute active</h3>
+      <p>Écouter sans préparer sa réponse. Accueillir les mots de l'autre comme un cadeau, sans jugement ni interprétation hâtive.</p>
+    </div>
+
+    <div class="outil-card">
+      <h3>La parole juste</h3>
+      <p>Dire ce qui est vrai, avec bienveillance. Choisir ses mots comme on choisit ses gestes : avec attention et respect.</p>
+    </div>
+
+    <div class="outil-card">
+      <h3>La reformulation</h3>
+      <p>Renvoyer à l'autre ce que l'on a compris, pour vérifier l'accord et montrer que l'on a vraiment entendu.</p>
+    </div>
+
+    <div class="outil-card">
+      <h3>L'empathie</h3>
+      <p>Se mettre à la place de l'autre sans se perdre soi-même. Ressentir sans fusionner, comprendre sans juger.</p>
+    </div>
+
+    <div class="outil-card">
+      <h3>L'assertivité</h3>
+      <p>Affirmer ses besoins et ses limites avec calme et clarté, sans agressivité ni soumission.</p>
+    </div>
+
+    <div class="outil-card">
+      <h3>La communication non violente</h3>
+      <p>Observer sans juger, exprimer ses émotions, identifier ses besoins et formuler une demande claire et ouverte.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION INDIVIDU -->
+<section id="individu" class="level-section">
+  <div class="level-container">
+    <div class="level-intro">
+      <span class="section-eyebrow">Premier niveau</span>
+      <h2>L'<em>Individu</em></h2>
+      <p>Tout commence par soi. Avant de communiquer avec les autres, vous communiquez avec vous-même — à travers vos pensées, vos émotions et vos croyances. La qualité de votre dialogue intérieur détermine la qualité de toutes vos relations.</p>
+      <p>Comprendre son propre style de communication, ses déclencheurs émotionnels et ses schémas inconscients est le socle de toute transformation relationnelle durable.</p>
+      <div class="tag-list">
+        <span class="tag">Connaissance de soi</span>
+        <span class="tag">Dialogue intérieur</span>
+        <span class="tag">Émotions</span>
+        <span class="tag">Croyances</span>
+      </div>
+    </div>
+
+    <div class="cards-grid">
+      <div class="card">
+        <h3>Le style de communication</h3>
+        <p>Chaque individu possède un style dominant — assertif, passif, agressif ou passif-agressif. Identifier le vôtre est la première étape vers un changement conscient.</p>
+      </div>
+
+      <div class="card">
+        <h3>La régulation émotionnelle</h3>
+        <p>Vos émotions sont des messagers, pas des ennemis. Apprendre à les lire et les réguler transforme vos réactions automatiques en réponses choisies.</p>
+      </div>
+
+      <div class="card">
+        <h3>Les croyances limitantes</h3>
+        <p>Certaines convictions inconscientes sabotent vos échanges. Les identifier et les remettre en question ouvre la voie à une communication plus libre et authentique.</p>
+      </div>
+
+      <div class="card">
+        <h3>Les valeurs fondamentales</h3>
+        <p>Connaître ses valeurs profondes permet de communiquer avec cohérence et intégrité, même dans les situations de tension ou de conflit.</p>
+      </div>
+    </div>
+
+    <blockquote class="quote">
+      "La façon dont nous communiquons avec les autres et avec nous-mêmes détermine la qualité de notre relation au monde."
+    </blockquote>
+  </div>
+</section>
+
+<!-- SECTION DYADE -->
+<section id="dyade" class="level-section level-dark">
+  <div class="level-container">
+    <div class="level-intro">
+      <span class="section-eyebrow">Deuxième niveau</span>
+      <h2>La <em>Dyade</em></h2>
+      <p>La dyade — la relation entre deux personnes — est l'unité fondamentale de toute vie sociale. C'est ici que se joue l'essentiel : l'écoute, l'empathie, la confrontation bienveillante et la co-construction de sens.</p>
+      <p>Chaque relation à deux possède sa propre dynamique, ses zones d'harmonie et ses zones de friction. Comprendre ces mécanismes, c'est apprendre à naviguer avec fluidité dans vos relations les plus importantes.</p>
+      <div class="tag-list">
+        <span class="tag">Écoute active</span>
+        <span class="tag">Empathie</span>
+        <span class="tag">Feedback</span>
+        <span class="tag">Gestion des conflits</span>
+      </div>
+    </div>
+
+    <div class="cards-grid">
+      <div class="card">
+        <h3>L'écoute active</h3>
+        <p>Écouter vraiment, c'est bien plus qu'entendre. C'est être présent, suspendre son jugement et accueillir l'autre dans ce qu'il vit, sans chercher à répondre immédiatement.</p>
+      </div>
+
+      <div class="card">
+        <h3>L'empathie relationnelle</h3>
+        <p>Se mettre à la place de l'autre sans se perdre soi-même. L'empathie vraie est un équilibre délicat entre connexion et clarté personnelle.</p>
+      </div>
+
+      <div class="card">
+        <h3>Le feedback constructif</h3>
+        <p>Dire les choses avec justesse, ni trop, ni trop peu. Un feedback bien donné nourrit la relation au lieu de la fragiliser.</p>
+      </div>
+
+      <div class="card">
+        <h3>L'effet miroir</h3>
+        <p>Ce qui nous dérange chez l'autre révèle souvent quelque chose de nous. La dyade est un miroir puissant pour la connaissance de soi.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION COLLECTIF -->
+<section id="collectif" class="level-section">
+  <div class="level-container">
+    <div class="level-intro">
+      <span class="section-eyebrow">Troisième niveau</span>
+      <h2>Le <em>Collectif</em></h2>
+      <p>Au-delà de la relation à deux, le collectif obéit à ses propres lois. Groupes, équipes, familles, organisations — chaque ensemble humain développe une culture, des rôles implicites et des dynamiques invisibles qui influencent chaque membre.</p>
+      <p>Apprendre à lire ces dynamiques collectives, c'est acquérir la capacité d'agir avec justesse dans tous les contextes de groupe.</p>
+      <div class="tag-list">
+        <span class="tag">Dynamiques de groupe</span>
+        <span class="tag">Leadership</span>
+        <span class="tag">Culture</span>
+        <span class="tag">Cohésion</span>
+      </div>
+    </div>
+
+    <div class="cards-grid">
+      <div class="card">
+        <h3>Les rôles implicites</h3>
+        <p>Dans tout groupe, chacun occupe une place non dite. Identifier son rôle et celui des autres permet de comprendre les tensions et de rééquilibrer les dynamiques.</p>
+      </div>
+
+      <div class="card">
+        <h3>La culture collective</h3>
+        <p>Chaque groupe développe ses propres codes, valeurs et habitudes. En comprendre la culture, c'est pouvoir y contribuer avec authenticité.</p>
+      </div>
+
+      <div class="card">
+        <h3>La communication systémique</h3>
+        <p>Dans un système, tout est lié. Un changement de comportement chez un membre impacte l'ensemble du groupe — pour le meilleur ou pour le pire.</p>
+      </div>
+
+      <div class="card">
+        <h3>Le leadership relationnel</h3>
+        <p>Mener un groupe ne s'impose pas — cela se cultive. Le vrai leadership naît de la qualité des relations et de la confiance construite dans le temps.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SECTION E-BOOKS (à ajouter avant la CTA) ===== -->
+<section class="ebooks-section">
+  <div class="ebooks-container">
+    <h2>Nos <em>E-books</em></h2>
+    <p class="section-sub">Des guides pratiques pour approfondir vos compétences en communication relationnelle.</p>
+
+    <div class="ebooks-grid">
+      <!-- E-BOOK 1 -->
+      <div class="ebook-card">
+        <div class="ebook-image" style="background-image: url('https://via.placeholder.com/300x200/14101f/c9a96e?text=E-book+1');"></div>
+        <h3>L'Art de la Communication Relationnelle</h3>
+        <p>Un guide complet pour maîtriser l'écoute active, l'empathie et la parole juste au quotidien.</p>
+        <div class="ebook-price">19,90 €</div>
+        <a href="#" class="btn-primary">Découvrir →</a>
+      </div>
+
+      <!-- E-BOOK 2 (en préparation) -->
+      <div class="ebook-card">
+        <div class="ebook-image" style="background-image: url('https://via.placeholder.com/300x200/14101f/c9a96e?text=E-book+2');"></div>
+        <h3>Les 9 Types de Personnalité selon l'Ennéagramme</h3>
+        <p>Explorez votre profil et celui de vos proches pour des relations plus harmonieuses.</p>
+        <div class="ebook-price">24,90 € <span class="coming-soon">Bientôt disponible</span></div>
+        <a href="#" class="btn-secondary">Précommander →</a>
+      </div>
+
+      <!-- E-BOOK 3 (futur) -->
+      <div class="ebook-card">
+        <div class="ebook-image" style="background-image: url('https://via.placeholder.com/300x200/14101f/c9a96e?text=E-book+3');"></div>
+        <h3>Coaching & Transformation Relationnelle</h3>
+        <p>Méthodes et exercices pour un accompagnement personnalisé et durable.</p>
+        <div class="ebook-price">29,90 € <span class="coming-soon">Bientôt disponible</span></div>
+        <a href="#" class="btn-secondary">Précommander →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="cta-container">
+    <h2>Prêt à transformer vos relations ?</h2>
+    <p>Un accompagnement personnalisé pour développer votre art de la communication au quotidien.</p>
+    <a href="rendez-vous.html" class="btn-primary">Prendre rendez-vous →</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <a href="index.html" class="logo">MGC</a>
+    <p>Un accompagnement bienveillant pour maîtriser l'art de la communication relationnelle et explorer la profondeur de votre personnalité.</p>
+  </div>
+  <div>
+    <h4>Services</h4>
+    <ul>
+      <li><a href="coaching.html">Coaching individuel</a></li>
+      <li><a href="enneagramme.html">L'Ennéagramme</a></li>
+      <li><a href="test.html">Test interactif</a></li>
+      <li><a href="outil-relationnel.html">Outil Relationnel</a></li>
+    </ul>
+  </div>
+  <div>
+    <h4>Navigation</h4>
+    <ul>
+      <li><a href="apropos.html">À propos</a></li>
+      <li><a href="rendez-vous.html">Rendez-vous</a></li>
+      <ul>
+        <li><a href="legal-page.html">Mentions légales</a></li>
+      </ul>
+    </ul>
+  </div>
+</footer>
+<div class="footer-copy">© 2026 MGC — Communication Relationnelle · Tous droits réservés</div>
+
+<script>
+  window.addEventListener('scroll', () => {
+    document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 50);
+  });
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  reveals.forEach(r => observer.observe(r));
+
+  function toggleMenu() {
+    const menu = document.getElementById('mobileMenu');
+    const burger = document.getElementById('hamburger');
+    menu.classList.toggle('open');
+    burger.classList.toggle('open');
+    document.body.style.overflow = menu.classList.contains('open') ? 'hidden' : '';
+  }
+  function closeMenu() {
+    document.getElementById('mobileMenu').classList.remove('open');
+    document.getElementById('hamburger').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
+</script>
+
+</body>
+</html>

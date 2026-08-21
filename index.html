@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MGC — Communication Relationnelle</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+  <style>
+    /* ── HAMBURGER MOBILE ── */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 8px;
+      z-index: 1001;
+    }
+    .hamburger span {
+      display: block;
+      width: 25px;
+      height: 2px;
+      background: #fff;
+      border-radius: 2px;
+      transition: all 0.3s ease;
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* ── OVERLAY MENU MOBILE ── */
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100vh;
+      background: rgba(10, 8, 20, 0.98);
+      backdrop-filter: blur(20px);
+      z-index: 999;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 0;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .mobile-menu.open {
+      display: flex;
+      opacity: 1;
+    }
+    .mobile-menu a {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      color: #fff;
+      text-decoration: none;
+      padding: 1rem 2rem;
+      opacity: 0.85;
+      transition: opacity 0.2s, color 0.2s;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      width: 100%;
+      text-align: center;
+    }
+    .mobile-menu a:hover { opacity: 1; color: #c9a96e; }
+    .mobile-menu a.btn-mobile-rdv {
+      margin-top: 1.5rem;
+      background: linear-gradient(135deg, #c9a96e, #a07840);
+      color: #0a0814;
+      border-radius: 50px;
+      font-size: 1.1rem;
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      padding: 1rem 2.5rem;
+      width: auto;
+      border-bottom: none;
+      opacity: 1;
+    }
+    .mobile-menu a.btn-mobile-rdv:hover { background: linear-gradient(135deg, #d4b87a, #b08850); color: #0a0814; }
+
+    @media (max-width: 768px) {
+      .hamburger { display: flex; }
+      #nav .nav-links { display: none; }
+      #nav .btn-nav { display: none; }
+    }
+  </style>
+</head>
+<script src="script.js"></script>
+<body>
+
+<!-- MENU MOBILE OVERLAY -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html" onclick="closeMenu()">Accueil</a>
+  <a href="outil-relationnel.html" onclick="closeMenu()">Outil Relationnel</a>
+  <a href="enneagramme.html" onclick="closeMenu()">L'Ennéagramme</a>
+  <a href="coaching.html" onclick="closeMenu()">Coaching</a>
+  <a href="test.html" onclick="closeMenu()">Test</a>
+  <a href="apropos.html" onclick="closeMenu()">À propos</a>
+  <a href="rendez-vous.html" class="btn-mobile-rdv" onclick="closeMenu()">Rendez-vous →</a>
+</div>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="index.html" class="logo">MGC</a>
+  <ul class="nav-links">
+    <li><a href="index.html" class="active">Accueil</a></li>
+    <li><a href="outil-relationnel.html">Outil Relationnel</a></li>
+    <li><a href="enneagramme.html">L'Ennéagramme</a></li>
+    <li><a href="coaching.html">Coaching</a></li>
+    <li><a href="test.html">Test</a></li>
+    <li><a href="apropos.html">À propos</a></li>
+  </ul>
+  <a href="rendez-vous.html" class="btn-nav">Rendez-vous</a>
+  <!-- HAMBURGER -->
+  <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-vignette"></div>
+  <div class="hero-content">
+    <span class="eyebrow">Communication <em>Relationnelle</em></span>
+    <h1>Maîtriser<br><em>l'Art</em><br> de la Communication Relationnelle</h1>
+    <p>Grâce à l'Ennéagramme et aux outils de communication relationnelle, transformez la façon dont vous interagissez avec les autres — et avec vous-même.</p>
+    <div class="hero-btns">
+      <a href="test.html" class="btn-primary">Découvrir mon profil →</a>
+      <a href="coaching.html" class="btn-outline">En savoir plus</a>
+    </div>
+  </div>
+  <div class="scroll-hint">
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<hr class="sep">
+
+<!-- STATS -->
+<section class="s">
+  <div class="s-inner">
+    <div style="display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:1.8rem;">
+      <div class="reveal">
+        <span class="s-tag">Notre approche</span>
+        <h2 class="s-title">Une méthode qui<br><em>transforme</em> durablement</h2>
+      </div>
+      <p>Combinant l'Ennéagramme, les neurosciences de la communication et le coaching professionnel, chaque accompagnement est unique et profondément personnalisé.</p>
+    </div>
+    <div class="stats-grid">
+      <div class="stat-item reveal">
+        <span class="stat-num">100%</span>
+        <span class="stat-label">de nos clients constatent une amélioration de leurs relations en 3 séances</span>
+      </div>
+      <div class="stat-item reveal d2">
+        <span class="stat-num">+200</span>
+        <span class="stat-label">personnes accompagnées vers une communication authentique</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="sep">
+
+<!-- 4 PILIERS -->
+<section class="s">
+  <div class="s-inner">
+    <div class="reveal" style="text-align:center; margin: bottom 1.2rem;">
+      <span class="s-tag">Votre parcours</span>
+      <h2 class="s-title">Quatre piliers pour <em>transformer</em> votre communication</h2>
+    </div>
+    <div class="pillars-grid">
+      <a href="outil-relationnel.html" class="pillar-card reveal d1">
+        <h3>Outil Relationnel</h3>
+        <p>Explorez les subtilités de la communication interpersonnelle et collective.</p>
+      </a>
+      <a href="enneagramme.html" class="pillar-card reveal d2">
+        <h3>L'Ennéagramme</h3>
+        <p>Découvrez les 9 profils de personnalité et leur système de communication unique.</p>
+      </a>
+      <a href="coaching.html" class="pillar-card reveal d3">
+        <h3>Le Coaching</h3>
+        <p>Apprenez à communiquer grâce à l'accompagnement professionnel personnalisé.</p>
+      </a>
+      <a href="test.html" class="pillar-card reveal d4">
+        <h3>Test Interactif</h3>
+        <p>Identifiez votre profil Ennéagramme et prenez rendez-vous pour aller plus loin.</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<hr class="sep">
+
+<!-- TÉMOIGNAGES -->
+<section class="s">
+  <div class="s-inner">
+    <div class="reveal" style="text-align:center; margin-bottom:0.8rem;">
+      <span class="s-tag">Témoignages</span>
+      <h2 class="s-title">Ils ont <em>transformé</em> leur communication</h2>
+    </div>
+    <div class="testi-grid">
+      <div class="testi-card reveal">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">« Grâce à l'Ennéagramme, j'ai enfin compris pourquoi certaines conversations me vidaient. En 3 séances, tout a changé dans ma façon d'écouter. »</p>
+        <p class="testi-author"><strong>Sophie M.</strong> — Directrice marketing</p>
+      </div>
+      <div class="testi-card reveal d1">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">« Je savais que je communiquais mal, mais je ne savais pas pourquoi. Le coaching m'a donné des clés concrètes et immédiatement utilisables. »</p>
+        <p class="testi-author"><strong>Thomas R.</strong> — Entrepreneur</p>
+      </div>
+      <div class="testi-card reveal d2">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">« Une expérience profonde et bienveillante. J'ai découvert mon Type 4 et compris mes schémas relationnels. Ma vie personnelle et pro a suivi. »</p>
+        <p class="testi-author"><strong>Amélie D.</strong> — Coach sportive</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="cta-s">
+  <span class="s-tag reveal">Commencer maintenant</span>
+  <h2 class="reveal d1">Prêt(e) à mieux vous<br><em>comprendre ?</em></h2>
+  <p class="reveal d2">Faites le test gratuit en 10 minutes et découvrez votre profil Ennéagramme. Le premier pas vers une communication transformée.</p>
+  <div style="display:flex; gap:1.2rem; justify-content:center; flex-wrap:wrap; position:relative;">
+    <a href="test.html" class="btn-primary reveal d3">Faire le test gratuit →</a>
+    <a href="rendez-vous.html" class="btn-outline reveal d4">Prendre rendez-vous</a>
+  </div>
+</section>
+
+<!-- Footer -->
+  <footer class="reveal d1">
+    <div class="container">
+      <p class="footer-text">© 2026 MGC - Communication Relationnelle | Tous droits réservés<br>
+        <a href="mailto:matthieu-grondin@hotmail.fr">matthieu-grondin@hotmail.fr</a> | 06 23 43 76 97</p>
+      <ul>
+        <li><a href="legal-page.html">Mentions légales</a></li>
+      </ul>
+    </div>
+  </footer>
+
+<script>
+  // NAV SCROLL
+  window.addEventListener('scroll', () => {
+    document.getElementById('nav').classList.toggle('scrolled', scrollY > 60);
+  });
+
+  // REVEAL
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+  // HAMBURGER
+  function toggleMenu() {
+    const menu = document.getElementById('mobileMenu');
+    const burger = document.getElementById('hamburger');
+    menu.classList.toggle('open');
+    burger.classList.toggle('open');
+    document.body.style.overflow = menu.classList.contains('open') ? 'hidden' : '';
+  }
+  function closeMenu() {
+    document.getElementById('mobileMenu').classList.remove('open');
+    document.getElementById('hamburger').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  // Fermer avec Escape
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MGC — L'Ennéagramme</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+  <style>
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 8px;
+      z-index: 1001;
+    }
+    .hamburger span {
+      display: block;
+      width: 25px;
+      height: 2px;
+      background: #fff;
+      border-radius: 2px;
+      transition: all 0.3s ease;
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100vh;
+      background: rgba(10, 8, 20, 0.98);
+      backdrop-filter: blur(20px);
+      z-index: 999;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 0;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .mobile-menu.open { display: flex; opacity: 1; }
+    .mobile-menu a {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      color: #fff;
+      text-decoration: none;
+      padding: 1rem 2rem;
+      opacity: 0.85;
+      transition: opacity 0.2s, color 0.2s;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      width: 100%;
+      text-align: center;
+    }
+    .mobile-menu a:hover { opacity: 1; color: #c9a96e; }
+    .mobile-menu a.btn-mobile-rdv {
+      margin-top: 1.5rem;
+      background: linear-gradient(135deg, #c9a96e, #a07840);
+      color: #0a0814;
+      border-radius: 50px;
+      font-size: 1.1rem;
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      padding: 1rem 2.5rem;
+      width: auto;
+      border-bottom: none;
+      opacity: 1;
+    }
+    .mobile-menu a.btn-mobile-rdv:hover { background: linear-gradient(135deg, #d4b87a, #b08850); color: #0a0814; }
+    @media (max-width: 768px) {
+      .hamburger { display: flex; }
+      #nav .nav-links { display: none; }
+      #nav .btn-nav { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- MENU MOBILE OVERLAY -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html" onclick="closeMenu()">Accueil</a>
+  <a href="outil-relationnel.html" onclick="closeMenu()">Outil Relationnel</a>
+  <a href="enneagramme.html" onclick="closeMenu()">L'Ennéagramme</a>
+  <a href="coaching.html" onclick="closeMenu()">Coaching</a>
+  <a href="test.html" onclick="closeMenu()">Test</a>
+  <a href="apropos.html" onclick="closeMenu()">À propos</a>
+  <a href="rendez-vous.html" class="btn-mobile-rdv" onclick="closeMenu()">Rendez-vous</a>
+</div>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="index.html" class="logo">MGC</a>
+  <ul class="nav-links">
+    <li><a href="index.html">Accueil</a></li>
+    <li><a href="outil-relationnel.html">Outil Relationnel</a></li>
+    <li><a href="enneagramme.html" class="active">L'Ennéagramme</a></li>
+    <li><a href="coaching.html">Coaching</a></li>
+    <li><a href="test.html">Test</a></li>
+    <li><a href="apropos.html">À propos</a></li>
+  </ul>
+  <a href="rendez-vous.html" class="btn-nav">Rendez-vous</a>
+  <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <span class="hero-eyebrow reveal">Connaissance de soi</span>
+    <h1 class="reveal d1">L'Ennéagramme</h1>
+    <p class="reveal d2">9 façon de se découvrir...</p>
+    <a href="#roue" class="btn-primary reveal d3">Découvrir les 9 types →</a>
+  </div>
+</section>
+
+<!-- WHEEL SECTION -->
+<section class="wheel-section" id="roue">
+  <span class="section-eyebrow reveal">La roue des 9 types</span>
+  <h2 class="section-title reveal d1">Explorez chaque <em>profil</em></h2>
+  <p class="section-sub reveal d2">Cliquez sur un numéro pour découvrir le profil correspondant.</p>
+  <div class="wheel-container reveal d3">
+    <svg class="wheel-svg" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <radialGradient id="nodeGrad" cx="50%" cy="30%" r="70%">
+          <stop offset="0%" stop-color="#2a2720"/>
+          <stop offset="100%" stop-color="#1a1814"/>
+        </radialGradient>
+      </defs>
+      <circle cx="250" cy="250" r="190" fill="none" stroke="rgba(201,169,110,0.15)" stroke-width="1"/>
+      <g stroke="rgba(201,169,110,0.18)" stroke-width="1">
+        <line x1="250" y1="60"  x2="414" y2="345"/>
+        <line x1="414" y1="345" x2="86"  y2="345"/>
+        <line x1="86"  y1="345" x2="250" y2="60"/>
+      </g>
+      <g stroke="rgba(201,169,110,0.12)" stroke-width="1">
+        <line x1="372" y1="104" x2="315" y2="429"/>
+        <line x1="315" y1="429" x2="437" y2="217"/>
+        <line x1="437" y1="217" x2="128" y2="104"/>
+        <line x1="128" y1="104" x2="185" y2="429"/>
+        <line x1="185" y1="429" x2="63"  y2="217"/>
+        <line x1="63"  y1="217" x2="372" y2="104"/>
+      </g>
+      <text x="250" y="245" text-anchor="middle" font-family="Playfair Display,serif" font-size="22" fill="rgba(201,169,110,0.9)" font-style="italic">MGC</text>
+      <text x="250" y="268" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" fill="rgba(255,255,255,0.3)" letter-spacing="2">9 types</text>
+      <g class="ennea-nodes">
+        <g class="ennea-node" data-type="9" transform="translate(250,60)">
+          <circle r="22" fill="url(#nodeGrad)" stroke="rgba(201,169,110,0.4)" stroke-width="1.5"/>
+          <text dy="0.35em" text-anchor="middle" fill="#c9a96e" font-size="14" font-family="Playfair Display">9</text>
+        </g>
+        <g class="ennea-node" data-type="1" transform="translate(372,104)">
+          <circle r="22" fill="url(#nodeGrad)" stroke="rgba(201,169,110,0.4)" stroke-width="1.5"/>
+          <text dy="0.35em" text-anchor="middle" fill="#c9a96e" font-size="14" font-family="Playfair Display">1</text>
+        </g>
+        <g class="ennea-node" data-type="2" transform="translate(437,217)">
+          <circle r="22" fill="url(#nodeGrad)" stroke="rgba(201,169,110,0.4)" stroke-width="1.5"/>
+          <text dy="0.35em" text-anchor="middle" fill="#c9a96e" font-size="14" font-family="Playfair Display">2</text>
+        </g>
+        <g class="ennea-node" data-type="3" transform="translate(414,345)">
+          <circle r="22" fill="url(#nodeGrad)" stroke="rgba(201,169,110,0.4)" stroke-width="1.5"/>
+          <text dy="0.35em" text-anchor="middle" fill="#c9a96e" font-size="14" font-family="Playfair Display">3</text>
+        </g>
+        <g class="ennea-node" data-type="4" transform="translate(315,429)">
+          <circle r="22" fill="url(#nodeGrad)" stroke="rgba(201,169,110,0.4)" stroke-width="1.5"/>
+          <text dy="0.35em" text-anchor="middle" fill="#c9a96e" font-size="14" font-family="Playfair Display">4</text>
+        </g>
+        <g class="ennea-node" data-type="5" transform="translate(185,429)">
+          <circle r="22" fill="url(#nodeGrad)" stroke="rgba(201,169,110,0.4)" stroke-width="1.5"/>
+          <text dy="0.35em" text-anchor="middle" fill="#c9a96e" font-size="14" font-family="Playfair Display">5</text>
+        </g>
+        <g class="ennea-node" data-type="6" transform="translate(86,345)">
+          <circle r="22" fill="url(#nodeGrad)" stroke="rgba(201,169,110,0.4)" stroke-width="1.5"/>
+          <text dy="0.35em" text-anchor="middle" fill="#c9a96e" font-size="14" font-family="Playfair Display">6</text>
+        </g>
+        <g class="ennea-node" data-type="7" transform="translate(63,217)">
+          <circle r="22" fill="url(#nodeGrad)" stroke="rgba(201,169,110,0.4)" stroke-width="1.5"/>
+          <text dy="0.35em" text-anchor="middle" fill="#c9a96e" font-size="14" font-family="Playfair Display">7</text>
+        </g>
+        <g class="ennea-node" data-type="8" transform="translate(128,104)">
+          <circle r="22" fill="url(#nodeGrad)" stroke="rgba(201,169,110,0.4)" stroke-width="1.5"/>
+          <text dy="0.35em" text-anchor="middle" fill="#c9a96e" font-size="14" font-family="Playfair Display">8</text>
+        </g>
+      </g>
+    </svg>
+  </div>
+  <div class="profil-preview" id="preview-box">
+    <div class="type-num" id="prev-num"></div>
+    <h3 id="prev-title"></h3>
+    <p id="prev-desc"></p>
+    <a id="prev-link" href="#">Découvrir ce profil →</a>
+  </div>
+  <p id="preview-hint" style="color:rgba(255,255,255,0.3); font-size:0.85rem; margin-top:1.5rem;">Survolez un numéro pour voir le profil</p>
+</section>
+
+<hr class="sep">
+
+<!-- PROFILS GRID -->
+<section class="profils-section">
+  <div class="s-inner">
+    <div class="reveal" style="text-align:center; margin-bottom:2rem;">
+      <span class="section-eyebrow">Les 9 profils</span>
+      <h2 class="section-title">Trouvez votre <em>type</em></h2>
+    </div>
+    <div class="profils-grid">
+      <a href="profil1.html" class="profil-card reveal d1">
+        <div class="num">1</div>
+        <div class="type-label">Type 1</div>
+        <h3>Le Perfectionniste</h3>
+        <p>Rigoureux, éthique, idéaliste. Cherche l'excellence et la justice dans tout ce qu'il entreprend.</p>
+      </a>
+      <a href="profil2.html" class="profil-card reveal d2">
+        <div class="num">2</div>
+        <div class="type-label">Type 2</div>
+        <h3>L'Altruiste</h3>
+        <p>Généreux, empathique, chaleureux. Trouve sa joie dans le service et le soin aux autres.</p>
+      </a>
+      <a href="profil3.html" class="profil-card reveal d3">
+        <div class="num">3</div>
+        <div class="type-label">Type 3</div>
+        <h3>Le Performeur</h3>
+        <p>Ambitieux, adaptable, charismatique. Excelle dans la réussite et inspire par son énergie.</p>
+      </a>
+      <a href="profil4.html" class="profil-card reveal d1">
+        <div class="num">4</div>
+        <div class="type-label">Type 4</div>
+        <h3>Le Romantique</h3>
+        <p>Créatif, profond, authentique. Vit avec une intensité émotionnelle qui nourrit son art.</p>
+      </a>
+      <a href="profil5.html" class="profil-card reveal d2">
+        <div class="num">5</div>
+        <div class="type-label">Type 5</div>
+        <h3>L'Observateur</h3>
+        <p>Analytique, perspicace, autonome. Comprend le monde en l'observant avec une acuité rare.</p>
+      </a>
+      <a href="profil6.html" class="profil-card reveal d3">
+        <div class="num">6</div>
+        <div class="type-label">Type 6</div>
+        <h3>Le Loyaliste</h3>
+        <p>Fiable, courageux, vigilant. S'engage profondément dans ses relations et convictions.</p>
+      </a>
+      <a href="profil7.html" class="profil-card reveal d1">
+        <div class="num">7</div>
+        <div class="type-label">Type 7</div>
+        <h3>L'Épicurien</h3>
+        <p>Enthousiaste, créatif, optimiste. Embrasse la vie avec joie et soif d'expériences nouvelles.</p>
+      </a>
+      <a href="profil8.html" class="profil-card reveal d2">
+        <div class="num">8</div>
+        <div class="type-label">Type 8</div>
+        <h3>Le Protecteur</h3>
+        <p>Puissant, direct, protecteur. Défend les siens avec une intensité et une force naturelles.</p>
+      </a>
+      <a href="profil9.html" class="profil-card reveal d3">
+        <div class="num">9</div>
+        <div class="type-label">Type 9</div>
+        <h3>Le Médiateur</h3>
+        <p>Pacifique, bienveillant, harmonieux. Crée naturellement l'unité et la paix autour de lui.</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<hr class="sep">
+
+<!-- TIMELINE -->
+<ul class="timeline">
+    <li class="timeline-line"></li>
+  <li class="timeline-item reveal d1">
+    <div class="year">ANTIQUITÉ</div>
+    <p>Les racines de l'Ennéagramme dans les traditions soufies et la philosophie grecque.</p>
+  </li>
+  <li class="timeline-item reveal d2">
+    <div class="year">1915</div>
+    <p>Gurdjieff introduit la figure géométrique de l'Ennéagramme en Occident.</p>
+  </li>
+  <li class="timeline-item reveal d3">
+    <div class="year">1970</div>
+    <p>Oscar Ichazo développe les 9 types de personnalité à l'Institut Arica.</p>
+  </li>
+  <li class="timeline-item reveal d4">
+    <div class="year">1990</div>
+    <p>Don Riso et Russ Hudson popularisent l'outil avec leurs travaux en Occident.</p>
+  </li>
+  <li class="timeline-item reveal d5">
+    <div class="year">AUJOURD'HUI</div>
+    <p>Un outil reconnu mondialement pour le développement personnel, le coaching et le leadership.</p>
+  </li>
+</ul>
+
+<!-- CTA -->
+<div class="cta-s">
+  <h2 class="reveal">Quel est <em>votre</em> type ?</h2>
+  <p class="reveal d2">Faites le test interactif pour identifier votre profil dominant et commencer votre exploration.</p>
+  <div class="btn-group">
+    <a href="test.html" class="btn-primary reveal d3">Faire le test →</a>
+    <a href="coaching.html" class="btn-outline reveal d4">Découvrir le coaching</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <a href="index.html" class="logo">MGC</a>
+    <p>Un accompagnement bienveillant pour maîtriser l'art de la communication relationnelle et explorer la profondeur de votre personnalité.</p>
+  </div>
+  <div>
+    <h4>Services</h4>
+    <ul>
+      <li><a href="coaching.html">Coaching individuel</a></li>
+      <li><a href="enneagramme.html">L'Ennéagramme</a></li>
+      <li><a href="test.html">Test interactif</a></li>
+      <li><a href="outil-relationnel.html">Outil Relationnel</a></li>
+    </ul>
+  </div>
+  <div>
+    <h4>Navigation</h4>
+    <ul>
+      <li><a href="apropos.html">À propos</a></li>
+      <li><a href="rendez-vous.html">Rendez-vous</a></li>
+      <ul>
+        <li><a href="legal-page.html">Mentions légales</a></li>
+      </ul>
+  </div>
+</footer>
+<div class="footer-copy">© 2026 MGC — Communication Relationnelle · Tous droits réservés</div>
+
+<script>
+  window.addEventListener('scroll', () => {
+    document.getElementById('nav').classList.toggle('scrolled', scrollY > 60);
+  });
+
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+  const profiles = {
+    1: { num: 'Type 1', title: 'Le Perfectionniste', desc: 'Rigoureux, éthique et idéaliste. Animé par une quête d\'excellence et de justice.', link: 'profil1.html' },
+    2: { num: 'Type 2', title: 'L\'Altruiste', desc: 'Généreux, empathique et chaleureux. Trouve son sens dans le don de soi.', link: 'profil2.html' },
+    3: { num: 'Type 3', title: 'Le Performeur', desc: 'Ambitieux, adaptable et charismatique. Excelle dans la réussite.', link: 'profil3.html' },
+    4: { num: 'Type 4', title: 'Le Romantique', desc: 'Créatif, profond et authentique. Vit avec une intensité émotionnelle rare.', link: 'profil4.html' },
+    5: { num: 'Type 5', title: 'L\'Observateur', desc: 'Analytique, perspicace et autonome. Comprend le monde avec acuité.', link: 'profil5.html' },
+    6: { num: 'Type 6', title: 'Le Loyaliste', desc: 'Fiable, courageux et vigilant. S\'engage profondément dans ses convictions.', link: 'profil6.html' },
+    7: { num: 'Type 7', title: 'L\'Épicurien', desc: 'Enthousiaste, créatif et optimiste. Embrasse la vie avec joie.', link: 'profil7.html' },
+    8: { num: 'Type 8', title: 'Le Protecteur', desc: 'Puissant, direct et protecteur. Défend les siens avec force naturelle.', link: 'profil8.html' },
+    9: { num: 'Type 9', title: 'Le Médiateur', desc: 'Pacifique, bienveillant et harmonieux. Crée l\'unité autour de lui.', link: 'profil9.html' }
+  };
+
+  function showPreview(t) {
+    const p = profiles[t];
+    document.getElementById('prev-num').textContent = p.num;
+    document.getElementById('prev-title').textContent = p.title;
+    document.getElementById('prev-desc').textContent = p.desc;
+    document.getElementById('prev-link').href = p.link;
+    document.getElementById('preview-box').classList.add('active');
+    document.getElementById('preview-hint').style.display = 'none';
+    document.querySelectorAll('.ennea-node circle').forEach(c => c.setAttribute('stroke', 'rgba(201,169,110,0.3)'));
+    document.querySelector(`.ennea-node[data-type="${t}"] circle`).setAttribute('stroke', 'rgba(201,169,110,1)');
+  }
+
+  document.querySelectorAll('.ennea-node').forEach(node => {
+    node.addEventListener('mouseenter', () => { showPreview(node.dataset.type); });
+    node.style.cursor = 'pointer';
+    node.addEventListener('click', () => { window.location.href = profiles[node.dataset.type].link; });
+  });
+
+  // HAMBURGER
+  function toggleMenu() {
+    const menu = document.getElementById('mobileMenu');
+    const burger = document.getElementById('hamburger');
+    menu.classList.toggle('open');
+    burger.classList.toggle('open');
+    document.body.style.overflow = menu.classList.contains('open') ? 'hidden' : '';
+  }
+  function closeMenu() {
+    document.getElementById('mobileMenu').classList.remove('open');
+    document.getElementById('hamburger').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
+</script>
+
+</body>
+</html>

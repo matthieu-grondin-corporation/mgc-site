@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MGC — À propos</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+  <style>
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 8px;
+      z-index: 1001;
+    }
+    .hamburger span {
+      display: block;
+      width: 25px;
+      height: 2px;
+      background: #fff;
+      border-radius: 2px;
+      transition: all 0.3s ease;
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100vh;
+      background: rgba(10, 8, 20, 0.98);
+      backdrop-filter: blur(20px);
+      z-index: 999;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 0;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .mobile-menu.open { display: flex; opacity: 1; }
+    .mobile-menu a {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      color: #fff;
+      text-decoration: none;
+      padding: 1rem 2rem;
+      opacity: 0.85;
+      transition: opacity 0.2s, color 0.2s;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      width: 100%;
+      text-align: center;
+    }
+    .mobile-menu a:hover { opacity: 1; color: #c9a96e; }
+    .mobile-menu a.btn-mobile-rdv {
+      margin-top: 1.5rem;
+      background: linear-gradient(135deg, #c9a96e, #a07840);
+      color: #0a0814;
+      border-radius: 50px;
+      font-size: 1.1rem;
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      padding: 1rem 2.5rem;
+      width: auto;
+      border-bottom: none;
+      opacity: 1;
+    }
+    .mobile-menu a.btn-mobile-rdv:hover { background: linear-gradient(135deg, #d4b87a, #b08850); color: #0a0814; }
+    @media (max-width: 768px) {
+      .hamburger { display: flex; }
+      #nav .nav-links { display: none; }
+      #nav .btn-nav { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- MENU MOBILE OVERLAY -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html" onclick="closeMenu()">Accueil</a>
+  <a href="outil-relationnel.html" onclick="closeMenu()">Outil Relationnel</a>
+  <a href="enneagramme.html" onclick="closeMenu()">L'Ennéagramme</a>
+  <a href="coaching.html" onclick="closeMenu()">Coaching</a>
+  <a href="test.html" onclick="closeMenu()">Test</a>
+  <a href="apropos.html" onclick="closeMenu()">À propos</a>
+  <a href="rendez-vous.html" class="btn-mobile-rdv" onclick="closeMenu()">Rendez-vous</a>
+</div>
+
+<nav id="nav">
+  <a href="index.html" class="logo">MGC</a>
+  <ul class="nav-links">
+    <li><a href="index.html">Accueil</a></li>
+    <li><a href="outil-relationnel.html">Outil Relationnel</a></li>
+    <li><a href="enneagramme.html">L'Ennéagramme</a></li>
+    <li><a href="coaching.html">Coaching</a></li>
+    <li><a href="test.html">Test</a></li>
+    <li><a href="apropos.html" class="active">À propos</a></li>
+  </ul>
+  <a href="rendez-vous.html" class="btn-nav">Rendez-vous</a>
+  <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <span class="section-label reveal">Qui suis-je ?</span>
+  <h1 class="reveal d1">Une rencontre avant<br/>tout <em>humaine</em></h1>
+  <p class="reveal d2">Découvrez la personne derrière l'accompagnement — ses valeurs, son parcours, et ce qui l'a amené à faire de la communication relationnelle sa vocation.</p>
+</section>
+
+<!-- BIO -->
+<div class="bio-section">
+  <div class="bio-photo reveal">
+    <div class="photo-placeholder">
+      <div class="ph-icon">🖼️</div>
+      <p>Ajoutez votre photo ici<br/><small>Remplacez ce bloc par une balise &lt;img&gt;</small></p>
+    </div>
+    <div class="photo-caption">
+      <h4>[Votre Prénom Nom]</h4>
+      <p>Coach en communication relationnelle · Praticien Ennéagramme</p>
+    </div>
+  </div>
+  <div class="bio-content reveal d2">
+    <h2>Mon histoire,<br/>ma <em>vocation</em></h2>
+    <div class="bio-text">
+      <div class="text-placeholder">📝 Insérez votre texte de présentation ici.<br/>Votre histoire, votre parcours, ce qui vous a amené à cette vocation...</div>
+      <div class="text-placeholder">💬 Deuxième paragraphe — votre philosophie de l'accompagnement, ce qui vous différencie...</div>
+      <div class="text-placeholder">✨ Troisième paragraphe — votre vision, ce que vous souhaitez apporter à vos clients...</div>
+    </div>
+  </div>
+</div>
+
+<!-- VALEURS -->
+<section class="valeurs-section">
+  <div class="valeurs-inner">
+    <span class="section-label reveal">Ce en quoi je crois</span>
+    <h2 class="section-title reveal d1">Mes <em>valeurs</em> fondamentales</h2>
+    <div class="valeurs-grid">
+      <div class="valeur-card reveal d1">
+        <div class="valeur-icon">🎯</div>
+        <h3>L'authenticité</h3>
+        <p>Je crois que la transformation durable naît de la vérité — celle qu'on ose se dire à soi-même avant de la partager aux autres.</p>
+      </div>
+      <div class="valeur-card reveal d2">
+        <div class="valeur-icon">🤝</div>
+        <h3>Le respect de l'unicité</h3>
+        <p>Chaque personne est singulière. Mon rôle n'est pas de vous modeler, mais de révéler et amplifier ce qui vous est propre.</p>
+      </div>
+      <div class="valeur-card reveal d3">
+        <div class="valeur-icon">💡</div>
+        <h3>La bienveillance exigeante</h3>
+        <p>Bienveillance ne signifie pas complaisance. Je vous accompagne avec douceur et avec la fermeté nécessaire à votre croissance.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PARCOURS -->
+<section class="parcours-section">
+  <span class="section-label reveal">Mon chemin</span>
+  <h2 class="section-title reveal d1">Mon <em>parcours</em></h2>
+  <div class="timeline reveal d2">
+    <div class="timeline-item">
+      <div class="timeline-year">À compléter</div>
+      <h3>Première étape</h3>
+      <p>Décrivez ici une étape clé de votre parcours — formation, expérience, déclic personnel...</p>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">À compléter</div>
+      <h3>Deuxième étape</h3>
+      <p>Une autre étape importante — rencontre, certification, prise de conscience...</p>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">Aujourd'hui</div>
+      <h3>MGC — Communication Relationnelle</h3>
+      <p>Un accompagnement centré sur l'ennéagramme et la communication, au service de votre épanouissement relationnel.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <span class="section-label reveal">On se rencontre ?</span>
+  <h2 class="section-title reveal d1">Prêt(e) à <em>commencer</em> ?</h2>
+  <p class="reveal d2">Une première séance découverte pour voir si l'accompagnement vous correspond.</p>
+  <div class="btn-group reveal d3">
+    <a href="rendez-vous.html" class="btn-primary">Prendre rendez-vous →</a>
+    <a href="test.html" class="btn-outline">Faire le test gratuit</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <a href="index.html" class="logo">MGC</a>
+    <p>Un accompagnement bienveillant pour maîtriser l'art de la communication relationnelle.</p>
+  </div>
+  <div>
+    <h4>Services</h4>
+    <ul>
+      <li><a href="coaching.html">Coaching individuel</a></li>
+      <li><a href="enneagramme.html">L'Ennéagramme</a></li>
+      <li><a href="test.html">Test interactif</a></li>
+    </ul>
+  </div>
+  <div>
+    <h4>Navigation</h4>
+    <ul>
+      <li><a href="apropos.html">À propos</a></li>
+      <li><a href="rendez-vous.html">Rendez-vous</a></li>
+      <li><a href="#">Mentions légales</a></li>
+    </ul>
+  </div>
+</footer>
+<div class="footer-copy">© 2026 MGC — Communication Relationnelle · Tous droits réservés</div>
+
+<script>
+  window.addEventListener('scroll', () => {
+    document.getElementById('nav').classList.toggle('scrolled', scrollY > 60);
+  });
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+  function toggleMenu() {
+    const menu = document.getElementById('mobileMenu');
+    const burger = document.getElementById('hamburger');
+    menu.classList.toggle('open');
+    burger.classList.toggle('open');
+    document.body.style.overflow = menu.classList.contains('open') ? 'hidden' : '';
+  }
+  function closeMenu() {
+    document.getElementById('mobileMenu').classList.remove('open');
+    document.getElementById('hamburger').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
+</script>
+
+</body>
+</html>
