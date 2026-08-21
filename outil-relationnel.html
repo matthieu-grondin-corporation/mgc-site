@@ -13,103 +13,85 @@
       display: none;
     }
 
-    /* ===== CORRECTION DES CARTES E-BOOK (alignement à gauche + espacements) ===== */
+    /* ===== SECTION E-BOOKS — même DA que le reste du site (cf. .seance-card) ===== */
 .ebooks-section {
-  padding: 2rem 0;
-  background: transparent;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 4rem 2rem;
+  text-align: center;
 }
 
 .ebooks-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 1.5rem;
-  max-width: 1200px;
-  margin: 0 auto;
+  margin-top: 3rem;
+  text-align: left;
 }
 
 .ebook-card {
-  background: #1a1a2e; /* Fond bleu foncé */
-  border-radius: 12px;
-  padding: 1.5rem;
-  border: 1px solid #3a3a5a; /* Bordure légère */
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.8rem;
   display: flex;
   flex-direction: column;
-  min-height: 320px; /* Hauteur fixe pour homogénéité */
-  justify-content: flex-start; /* Alignement en haut */
-  position: relative;
+  transition: var(--transition);
 }
 
-.ebook-image {
-  height: 100px;
-  width: 100%;
-  background-size: cover;
-  background-position: center;
-  border-radius: 8px;
-  margin-bottom: 1rem;
+.ebook-card:hover {
+  border-color: var(--gold);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(201,169,110,0.15);
 }
 
-.ebook-card h3 {
-  font-size: 1.1rem;
-  font-weight: 600;
-  margin: 0 0 0.7rem 0 !important; /* Espacement sous le titre */
+.ebook-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 0.8rem;
+  margin-bottom: 0.8rem;
+}
+
+.ebook-name {
+  font-family: var(--serif);
+  font-size: 1.15rem;
+  color: var(--text);
   line-height: 1.3;
-  color: #fff;
 }
 
-.ebook-card p {
-  font-size: 0.85rem;
-  color: #a0a0a0; /* Texte gris clair */
-  margin: 0 0 1rem 0 !important; /* Espacement sous la description */
-  line-height: 1.4;
-  flex-grow: 1; /* Prend l'espace restant */
-}
-
-.ebook-price {
+.ebook-tag {
+  font-size: 0.75rem;
   font-weight: 600;
-  color: #f4d03f; /* Or */
-  margin: 0 0 1.2rem 0 !important; /* Espacement sous le prix */
-  font-size: 1.1rem;
+  color: var(--gold);
+  background: rgba(201,169,110,0.1);
+  padding: 0.3rem 0.7rem;
+  border-radius: 20px;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
-.ebook-card .btn-primary, .ebook-card .btn-secondary {
-  margin: 0 !important;
-  width: 100%;
-  padding: 0.7rem 1rem !important;
+.ebook-desc {
   font-size: 0.9rem;
+  color: var(--grey);
+  line-height: 1.6;
+  flex-grow: 1;
+  margin-bottom: 1.2rem;
+}
+
+.ebook-card .btn-primary,
+.ebook-card .btn-outline {
   text-align: center;
-  border-radius: 6px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: background 0.3s ease;
+  width: 100%;
 }
 
-.ebook-card .btn-primary {
-  background: #f4d03f; /* Bouton or */
-  color: #000;
-  border: none;
-}
-
-.ebook-card .btn-primary:hover {
-  background: #e6c229;
-}
-
-.ebook-card .btn-secondary {
-  background: transparent;
-  color: #fff;
-  border: 1px solid #3a3a5a;
-}
-
-.ebook-card .btn-secondary:hover {
-  background: #3a3a5a;
-}
-
-/* Style pour "Bientôt disponible" */
 .coming-soon {
   display: block;
-  color: #a0a0a0; /* Gris clair */
-  font-size: 0.8rem;
-  margin-top: 0.3rem;
+  color: var(--grey-soft);
+  font-size: 0.78rem;
+  margin-top: 0.6rem;
   font-style: italic;
+  text-align: center;
 }
   </style>
 </head>
@@ -315,39 +297,42 @@
   </div>
 </section>
 
-<!-- ===== SECTION E-BOOKS (à ajouter avant la CTA) ===== -->
+<!-- ===== SECTION E-BOOKS ===== -->
 <section class="ebooks-section">
-  <div class="ebooks-container">
-    <h2>Nos <em>E-books</em></h2>
-    <p class="section-sub">Des guides pratiques pour approfondir vos compétences en communication relationnelle.</p>
+  <h2>Nos <em>E-books</em></h2>
+  <p class="section-sub">Des guides pratiques pour approfondir vos compétences en communication relationnelle.</p>
 
-    <div class="ebooks-grid">
-      <!-- E-BOOK 1 -->
-      <div class="ebook-card">
-        <div class="ebook-image" style="background-image: url('https://via.placeholder.com/300x200/14101f/c9a96e?text=E-book+1');"></div>
-        <h3>L'Art de la Communication Relationnelle</h3>
-        <p>Un guide complet pour maîtriser l'écoute active, l'empathie et la parole juste au quotidien.</p>
-        <div class="ebook-price">19,90 €</div>
-        <a href="#" class="btn-primary">Découvrir →</a>
+  <div class="ebooks-grid">
+    <!-- E-BOOK 1 -->
+    <div class="ebook-card">
+      <div class="ebook-top">
+        <span class="ebook-name">L'Art de la Communication Relationnelle</span>
+        <span class="ebook-tag">19,90 €</span>
       </div>
+      <p class="ebook-desc">Un guide complet pour maîtriser l'écoute active, l'empathie et la parole juste au quotidien.</p>
+      <a href="#" class="btn-primary">Découvrir →</a>
+    </div>
 
-      <!-- E-BOOK 2 (en préparation) -->
-      <div class="ebook-card">
-        <div class="ebook-image" style="background-image: url('https://via.placeholder.com/300x200/14101f/c9a96e?text=E-book+2');"></div>
-        <h3>Les 9 Types de Personnalité selon l'Ennéagramme</h3>
-        <p>Explorez votre profil et celui de vos proches pour des relations plus harmonieuses.</p>
-        <div class="ebook-price">24,90 € <span class="coming-soon">Bientôt disponible</span></div>
-        <a href="#" class="btn-secondary">Précommander →</a>
+    <!-- E-BOOK 2 (en préparation) -->
+    <div class="ebook-card">
+      <div class="ebook-top">
+        <span class="ebook-name">Les 9 Types de Personnalité selon l'Ennéagramme</span>
+        <span class="ebook-tag">24,90 €</span>
       </div>
+      <p class="ebook-desc">Explorez votre profil et celui de vos proches pour des relations plus harmonieuses.</p>
+      <a href="#" class="btn-outline">Précommander →</a>
+      <span class="coming-soon">Bientôt disponible</span>
+    </div>
 
-      <!-- E-BOOK 3 (futur) -->
-      <div class="ebook-card">
-        <div class="ebook-image" style="background-image: url('https://via.placeholder.com/300x200/14101f/c9a96e?text=E-book+3');"></div>
-        <h3>Coaching & Transformation Relationnelle</h3>
-        <p>Méthodes et exercices pour un accompagnement personnalisé et durable.</p>
-        <div class="ebook-price">29,90 € <span class="coming-soon">Bientôt disponible</span></div>
-        <a href="#" class="btn-secondary">Précommander →</a>
+    <!-- E-BOOK 3 (futur) -->
+    <div class="ebook-card">
+      <div class="ebook-top">
+        <span class="ebook-name">Coaching & Transformation Relationnelle</span>
+        <span class="ebook-tag">29,90 €</span>
       </div>
+      <p class="ebook-desc">Méthodes et exercices pour un accompagnement personnalisé et durable.</p>
+      <a href="#" class="btn-outline">Précommander →</a>
+      <span class="coming-soon">Bientôt disponible</span>
     </div>
   </div>
 </section>
