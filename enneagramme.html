@@ -7,6 +7,9 @@
   <title>MGC — L'Ennéagramme</title>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="style.css"/>
+  <style>
+    .hero { min-height: 40vh; padding: 5rem 2rem 2rem; }
+  </style>
 </head>
 <body>
 
@@ -16,8 +19,8 @@
   <a href="outil-relationnel.html" onclick="closeMenu()">Outil Relationnel</a>
   <a href="enneagramme.html" onclick="closeMenu()">L'Ennéagramme</a>
   <a href="coaching.html" onclick="closeMenu()">Coaching</a>
-  <a href="test.html" onclick="closeMenu()">Test</a>
   <a href="apropos.html" onclick="closeMenu()">À propos</a>
+  <a href="https://www.instagram.com/mgc.com_/" target="_blank" rel="noopener" onclick="closeMenu()">Instagram</a>
   <a href="rendez-vous.html" class="btn-mobile-rdv" onclick="closeMenu()">Rendez-vous</a>
 </div>
 
@@ -29,10 +32,14 @@
     <li><a href="outil-relationnel.html">Outil Relationnel</a></li>
     <li><a href="enneagramme.html" class="active">L'Ennéagramme</a></li>
     <li><a href="coaching.html">Coaching</a></li>
-    <li><a href="test.html">Test</a></li>
     <li><a href="apropos.html">À propos</a></li>
   </ul>
-  <a href="rendez-vous.html" class="btn-nav">Rendez-vous</a>
+  <div class="nav-actions">
+    <a href="https://www.instagram.com/mgc.com_/" target="_blank" rel="noopener" class="btn-instagram" aria-label="Instagram">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="6"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.3" cy="6.7" r="1.1" fill="currentColor" stroke="none"/></svg>
+    </a>
+    <a href="rendez-vous.html" class="btn-nav">Rendez-vous</a>
+  </div>
   <div class="hamburger" id="hamburger" onclick="toggleMenu()">
     <span></span><span></span><span></span>
   </div>
@@ -44,13 +51,11 @@
     <span class="hero-eyebrow reveal">Connaissance de soi</span>
     <h1 class="reveal d1">L'Ennéagramme</h1>
     <p class="reveal d2">9 façon de se découvrir...</p>
-    <a href="#roue" class="btn-primary reveal d3">Découvrir les 9 types →</a>
   </div>
 </section>
 
 <!-- WHEEL SECTION -->
 <section class="wheel-section" id="roue">
-  <span class="section-eyebrow reveal">La roue des 9 types</span>
   <h2 class="section-title reveal d1">Explorez chaque <em>profil</em></h2>
   <p class="section-sub reveal d2">Cliquez sur un numéro pour découvrir le profil correspondant.</p>
   <div class="wheel-container reveal d3">
@@ -139,55 +144,55 @@
       <a href="profil1.html" class="profil-card reveal d1">
         <div class="num">1</div>
         <div class="type-label">Type 1</div>
-        <h3>Le Perfectionniste</h3>
+        <h3>'Le Perfectionniste'</h3>
         <p>Rigoureux, éthique, idéaliste. Cherche l'excellence et la justice dans tout ce qu'il entreprend.</p>
       </a>
       <a href="profil2.html" class="profil-card reveal d2">
         <div class="num">2</div>
         <div class="type-label">Type 2</div>
-        <h3>L'Altruiste</h3>
+        <h3>'L'Altruiste'</h3>
         <p>Généreux, empathique, chaleureux. Trouve sa joie dans le service et le soin aux autres.</p>
       </a>
       <a href="profil3.html" class="profil-card reveal d3">
         <div class="num">3</div>
         <div class="type-label">Type 3</div>
-        <h3>Le Performeur</h3>
+        <h3>'Le Performeur'</h3>
         <p>Ambitieux, adaptable, charismatique. Excelle dans la réussite et inspire par son énergie.</p>
       </a>
       <a href="profil4.html" class="profil-card reveal d1">
         <div class="num">4</div>
         <div class="type-label">Type 4</div>
-        <h3>Le Romantique</h3>
+        <h3>'Le Romantique'</h3>
         <p>Créatif, profond, authentique. Vit avec une intensité émotionnelle qui nourrit son art.</p>
       </a>
       <a href="profil5.html" class="profil-card reveal d2">
         <div class="num">5</div>
         <div class="type-label">Type 5</div>
-        <h3>L'Observateur</h3>
+        <h3>'L'Observateur'</h3>
         <p>Analytique, perspicace, autonome. Comprend le monde en l'observant avec une acuité rare.</p>
       </a>
       <a href="profil6.html" class="profil-card reveal d3">
         <div class="num">6</div>
         <div class="type-label">Type 6</div>
-        <h3>Le Loyaliste</h3>
+        <h3>'Le Loyaliste'</h3>
         <p>Fiable, courageux, vigilant. S'engage profondément dans ses relations et convictions.</p>
       </a>
       <a href="profil7.html" class="profil-card reveal d1">
         <div class="num">7</div>
         <div class="type-label">Type 7</div>
-        <h3>L'Épicurien</h3>
+        <h3>'L'Épicurien'</h3>
         <p>Enthousiaste, créatif, optimiste. Embrasse la vie avec joie et soif d'expériences nouvelles.</p>
       </a>
       <a href="profil8.html" class="profil-card reveal d2">
         <div class="num">8</div>
         <div class="type-label">Type 8</div>
-        <h3>Le Protecteur</h3>
+        <h3>'Le Protecteur'</h3>
         <p>Puissant, direct, protecteur. Défend les siens avec une intensité et une force naturelles.</p>
       </a>
       <a href="profil9.html" class="profil-card reveal d3">
         <div class="num">9</div>
         <div class="type-label">Type 9</div>
-        <h3>Le Médiateur</h3>
+        <h3>'Le Médiateur'</h3>
         <p>Pacifique, bienveillant, harmonieux. Crée naturellement l'unité et la paix autour de lui.</p>
       </a>
     </div>
@@ -196,37 +201,13 @@
 
 <hr class="sep">
 
-<!-- TIMELINE -->
-<ul class="timeline">
-    <li class="timeline-line"></li>
-  <li class="timeline-item reveal d1">
-    <div class="year">ANTIQUITÉ</div>
-    <p>Les racines de l'Ennéagramme dans les traditions soufies et la philosophie grecque.</p>
-  </li>
-  <li class="timeline-item reveal d2">
-    <div class="year">1915</div>
-    <p>Gurdjieff introduit la figure géométrique de l'Ennéagramme en Occident.</p>
-  </li>
-  <li class="timeline-item reveal d3">
-    <div class="year">1970</div>
-    <p>Oscar Ichazo développe les 9 types de personnalité à l'Institut Arica.</p>
-  </li>
-  <li class="timeline-item reveal d4">
-    <div class="year">1990</div>
-    <p>Don Riso et Russ Hudson popularisent l'outil avec leurs travaux en Occident.</p>
-  </li>
-  <li class="timeline-item reveal d5">
-    <div class="year">AUJOURD'HUI</div>
-    <p>Un outil reconnu mondialement pour le développement personnel, le coaching et le leadership.</p>
-  </li>
-</ul>
 
 <!-- CTA -->
 <div class="cta-s">
   <h2 class="reveal">Quel est <em>votre</em> type ?</h2>
-  <p class="reveal d2">Faites le test interactif pour identifier votre profil dominant et commencer votre exploration.</p>
+  <p class="reveal d2">Réservez une séance pour identifier votre profil dominant et commencer votre exploration.</p>
   <div class="btn-group">
-    <a href="test.html" class="btn-primary reveal d3">Faire le test →</a>
+    <a href="rendez-vous.html" class="btn-primary reveal d3">Prendre rendez-vous →</a>
     <a href="coaching.html" class="btn-outline reveal d4">Découvrir le coaching</a>
   </div>
 </div>
@@ -242,7 +223,6 @@
     <ul>
       <li><a href="coaching.html">Coaching individuel</a></li>
       <li><a href="enneagramme.html">L'Ennéagramme</a></li>
-      <li><a href="test.html">Test interactif</a></li>
       <li><a href="outil-relationnel.html">Outil Relationnel</a></li>
     </ul>
   </div>

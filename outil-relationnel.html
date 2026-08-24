@@ -95,75 +95,9 @@
   text-align: center;
 }
 
-/* ===== CARTE OUTIL CLIQUABLE + MODAL PDF ===== */
-.outil-card-clickable {
-  cursor: pointer;
-}
-.outil-card-clickable:focus-visible {
-  outline: 2px solid var(--gold);
-  outline-offset: 3px;
-}
-
-.pdf-modal-overlay {
-  display: none;
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.75);
-  z-index: 1000;
-  padding: 3rem 1.5rem;
-}
-.pdf-modal-overlay.open {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.pdf-modal {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  width: 100%;
-  max-width: 900px;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-}
-.pdf-modal-header {
-  display: flex;
-  justify-content: flex-end;
-  padding: 0.6rem 0.8rem;
-  border-bottom: 1px solid var(--border);
-}
-.pdf-modal-close {
-  background: none;
-  border: none;
-  color: var(--text);
-  font-size: 1.6rem;
-  line-height: 1;
-  cursor: pointer;
-  padding: 0.2rem 0.6rem;
-}
-.pdf-modal-close:hover {
-  color: var(--gold);
-}
-.pdf-modal iframe {
-  flex: 1;
-  width: 100%;
-  border: none;
-}
   </style>
 </head>
 <body>
-
-<!-- MODAL PDF -->
-<div class="pdf-modal-overlay" id="pdfModal" onclick="if(event.target===this)closePdfModal()">
-  <div class="pdf-modal">
-    <div class="pdf-modal-header">
-      <button type="button" class="pdf-modal-close" onclick="closePdfModal()" aria-label="Fermer">&times;</button>
-    </div>
-    <iframe id="pdfModalFrame" src="" title="Aperçu du document PDF"></iframe>
-  </div>
-</div>
 
 <!-- MENU MOBILE OVERLAY -->
 <div class="mobile-menu" id="mobileMenu">
@@ -171,8 +105,8 @@
   <a href="outil-relationnel.html" onclick="closeMenu()">Outil Relationnel</a>
   <a href="enneagramme.html" onclick="closeMenu()">L'Ennéagramme</a>
   <a href="coaching.html" onclick="closeMenu()">Coaching</a>
-  <a href="test.html" onclick="closeMenu()">Test</a>
   <a href="apropos.html" onclick="closeMenu()">À propos</a>
+  <a href="https://www.instagram.com/mgc.com_/" target="_blank" rel="noopener" onclick="closeMenu()">Instagram</a>
   <a href="rendez-vous.html" class="btn-mobile-rdv" onclick="closeMenu()">Rendez-vous</a>
 </div>
 
@@ -184,10 +118,14 @@
     <li><a href="outil-relationnel.html" class="active">Outil Relationnel</a></li>
     <li><a href="enneagramme.html">L'Ennéagramme</a></li>
     <li><a href="coaching.html">Coaching</a></li>
-    <li><a href="test.html">Test</a></li>
     <li><a href="apropos.html">À propos</a></li>
   </ul>
-  <a href="rendez-vous.html" class="btn-nav">Rendez-vous</a>
+  <div class="nav-actions">
+    <a href="https://www.instagram.com/mgc.com_/" target="_blank" rel="noopener" class="btn-instagram" aria-label="Instagram">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="6"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.3" cy="6.7" r="1.1" fill="currentColor" stroke="none"/></svg>
+    </a>
+    <a href="rendez-vous.html" class="btn-nav">Rendez-vous</a>
+  </div>
   <div class="hamburger" id="hamburger" onclick="toggleMenu()">
     <span></span><span></span><span></span>
   </div>
@@ -196,35 +134,32 @@
 <!-- HERO -->
 <section class="hero">
   <div class="hero-content reveal visible">
-    <span class="hero-eyebrow">L'outil fondamental</span>
     <h1>L'art de la <em>communication</em></h1>
-    <p>Communiquer, ce n'est pas seulement parler. C'est créer un lien entre deux mondes intérieurs — un système qui relie l'individu à lui-même, aux autres et aux groupes qu'il forme.</p>
-    <a href="#outils" class="btn-primary">Explorer l'outil →</a>
+    <p>"Communiquer, ce n'est pas seulement parler. C'est créer un lien entre deux mondes intérieurs — un système qui relie l'individu à lui-même, aux autres et aux groupes qu'il forme."</p>
   </div>
 </section>
 
 <!-- LES OUTILS ESSENTIELS -->
 <section id="outils" class="outils-section">
   <h2>Les outils <em>essentiels</em></h2>
-  <p class="section-sub">Voici les outils fondamentaux pour transformer vos échanges en véritables rencontres.</p>
 
   <div class="outils-grid">
-    <div class="outil-card outil-card-clickable" onclick="openPdfModal('ebooks/Ecoute_Active.pdf')" role="button" tabindex="0" onkeydown="if(event.key==='Enter')openPdfModal('ebooks/Ecoute_Active.pdf')">
+    <div class="outil-card">
       <h3>L'écoute active</h3>
       <p>Écouter sans préparer sa réponse. Accueillir les mots de l'autre sans jugement ni interprétation hâtive.</p>
     </div>
 
-    <div class="outil-card outil-card-clickable" onclick="openPdfModal('ebooks/Le_Feedback.pdf')" role="button" tabindex="0" onkeydown="if(event.key==='Enter')openPdfModal('ebooks/Le_Feedback.pdf')">
+    <div class="outil-card">
       <h3>Le feedback</h3>
       <p>Donner un retour honnête et constructif, au bon moment, pour faire grandir la relation plutôt que la fragiliser.</p>
     </div>
 
-    <div class="outil-card outil-card-clickable" onclick="openPdfModal('ebooks/Art_du_Questionnement.pdf')" role="button" tabindex="0" onkeydown="if(event.key==='Enter')openPdfModal('ebooks/Art_du_Questionnement.pdf')">
+    <div class="outil-card">
       <h3>L'art du questionnement</h3>
       <p>Poser les bonnes questions, ouvertes et sincères, pour ouvrir l'échange plutôt que le refermer.</p>
     </div>
 
-    <div class="outil-card outil-card-clickable" onclick="openPdfModal('ebooks/La_Responsabilite.pdf')" role="button" tabindex="0" onkeydown="if(event.key==='Enter')openPdfModal('ebooks/La_Responsabilite.pdf')">
+    <div class="outil-card">
       <h3>La responsabilité</h3>
       <p>Reconnaître sa part dans chaque échange, sans se blâmer ni blâmer l'autre, pour agir plutôt que subir.</p>
     </div>
@@ -291,7 +226,6 @@
     <ul>
       <li><a href="coaching.html">Coaching individuel</a></li>
       <li><a href="enneagramme.html">L'Ennéagramme</a></li>
-      <li><a href="test.html">Test interactif</a></li>
       <li><a href="outil-relationnel.html">Outil Relationnel</a></li>
     </ul>
   </div>
@@ -330,18 +264,7 @@
     document.getElementById('hamburger').classList.remove('open');
     document.body.style.overflow = '';
   }
-  document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeMenu(); closePdfModal(); } });
-
-  function openPdfModal(url) {
-    document.getElementById('pdfModalFrame').src = url;
-    document.getElementById('pdfModal').classList.add('open');
-    document.body.style.overflow = 'hidden';
-  }
-  function closePdfModal() {
-    document.getElementById('pdfModal').classList.remove('open');
-    document.getElementById('pdfModalFrame').src = '';
-    document.body.style.overflow = '';
-  }
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeMenu(); } });
 </script>
 
 </body>
