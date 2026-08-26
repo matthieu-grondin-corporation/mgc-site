@@ -1,7 +1,7 @@
 /* ============================================
    MGC — STYLE GLOBAL (v2)
    Charte : atelier éditorial — papier clair, encre,
-   vert profond signal. Lignes nettes, mise en page
+   bleu encre signal. Lignes nettes, mise en page
    asymétrique, chiffres mono pour tout ce qui est
    séquence ou donnée.
    ============================================ */
@@ -15,8 +15,8 @@
   --ink-faint: #8b8c7c;
   --line: #dbd6c5;
   --line-strong: #c5bfa9;
-  --accent: #1f5c43;
-  --accent-strong: #123a29;
+  --accent: #2d3f6b;
+  --accent-strong: #1e2b4d;
   --accent-tint: color-mix(in srgb, var(--accent) 10%, var(--paper));
   --accent-tint-strong: color-mix(in srgb, var(--accent) 20%, var(--paper));
   --accent-on: #f5f2e9;
