@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg"/>
+  <title>MGC — Communication Relationnelle</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,500;0,600;0,700;1,500;1,600&family=Work+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+<!-- MENU MOBILE OVERLAY -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html" onclick="closeMenu()">Accueil</a>
+  <a href="outil-relationnel.html" onclick="closeMenu()">Outil Relationnel</a>
+  <a href="enneagramme.html" onclick="closeMenu()">L'Ennéagramme</a>
+  <a href="coaching.html" onclick="closeMenu()">Coaching</a>
+  <a href="apropos.html" onclick="closeMenu()">À propos</a>
+  <a href="https://www.instagram.com/mgc.com_/" target="_blank" rel="noopener" onclick="closeMenu()">Instagram</a>
+  <a href="rendez-vous.html" class="btn-mobile-rdv" onclick="closeMenu()">Rendez-vous →</a>
+</div>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="index.html" class="logo">MGC</a>
+  <ul class="nav-links">
+    <li><a href="index.html" class="active">Accueil</a></li>
+    <li><a href="outil-relationnel.html">Outil Relationnel</a></li>
+    <li><a href="enneagramme.html">L'Ennéagramme</a></li>
+    <li><a href="coaching.html">Coaching</a></li>
+    <li><a href="apropos.html">À propos</a></li>
+  </ul>
+  <div class="nav-actions">
+    <a href="https://www.instagram.com/mgc.com_/" target="_blank" rel="noopener" class="btn-instagram" aria-label="Instagram">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="6"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.3" cy="6.7" r="1.1" fill="currentColor" stroke="none"/></svg>
+    </a>
+    <a href="rendez-vous.html" class="btn-nav">Rendez-vous</a>
+  </div>
+  <!-- HAMBURGER -->
+  <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <span class="hero-eyebrow reveal">Communication relationnelle</span>
+    <h1 class="reveal d1">Maîtriser l'art de la <em>communication relationnelle</em></h1>
+    <p class="reveal d2">Grâce aux techniques de communication relationnelle, transformez la façon dont vous interagissez avec les autres — et avec vous-même.</p>
+    <div class="btn-group reveal d3">
+      <a href="coaching.html" class="btn-primary">En savoir plus →</a>
+    </div>
+  </div>
+</section>
+
+<hr class="sep">
+
+<!-- 3 PILIERS -->
+<section class="s">
+  <div class="s-inner">
+    <div class="reveal">
+      <span class="section-eyebrow">Votre parcours</span>
+      <h2 class="section-title">Trois piliers pour <em>transformer</em> votre communication</h2>
+    </div>
+    <div class="pillars-grid">
+      <a href="outil-relationnel.html" class="pillar-card reveal d1">
+        <h3>Outil Relationnel</h3>
+        <p>Explorez les subtilités de la communication interpersonnelle et collective.</p>
+      </a>
+      <a href="enneagramme.html" class="pillar-card reveal d2">
+        <h3>L'Ennéagramme</h3>
+        <p>Découvrez les 9 profils de personnalité et leur système de communication unique.</p>
+      </a>
+      <a href="coaching.html" class="pillar-card reveal d3">
+        <h3>Le Coaching</h3>
+        <p>Apprenez à communiquer grâce à l'accompagnement professionnel personnalisé.</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<hr class="sep">
+
+<!-- CTA FINAL -->
+<section class="cta-s">
+  <span class="section-eyebrow reveal">Commencer maintenant</span>
+  <h2 class="reveal d1">Prêt(e) à passer <em>à l'action</em> ?</h2>
+  <p class="reveal d2">Réservez une séance découverte et faites le premier pas vers une communication transformée.</p>
+  <div class="btn-group reveal d3">
+    <a href="rendez-vous.html" class="btn-primary">Prendre rendez-vous →</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="reveal d1">
+  <div>
+    <a href="index.html" class="logo">MGC</a>
+    <p>Un accompagnement bienveillant pour maîtriser l'art de la communication relationnelle.</p>
+  </div>
+  <div>
+    <h4>Services</h4>
+    <ul>
+      <li><a href="coaching.html">Coaching individuel</a></li>
+      <li><a href="enneagramme.html">L'Ennéagramme</a></li>
+      <li><a href="outil-relationnel.html">Outil Relationnel</a></li>
+    </ul>
+  </div>
+  <div>
+    <h4>Navigation</h4>
+    <ul>
+      <li><a href="apropos.html">À propos</a></li>
+      <li><a href="rendez-vous.html">Rendez-vous</a></li>
+      <li><a href="legal-page.html">Mentions légales</a></li>
+    </ul>
+  </div>
+</footer>
+<div class="footer-copy">© 2026 MGC — Communication Relationnelle · Tous droits réservés · <a href="mailto:matthieu-grondin@hotmail.fr">matthieu-grondin@hotmail.fr</a></div>
+
+<script>
+  // NAV SCROLL
+  window.addEventListener('scroll', () => {
+    document.getElementById('nav').classList.toggle('scrolled', scrollY > 60);
+  });
+
+  // REVEAL
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+  // HAMBURGER
+  function toggleMenu() {
+    const menu = document.getElementById('mobileMenu');
+    const burger = document.getElementById('hamburger');
+    menu.classList.toggle('open');
+    burger.classList.toggle('open');
+    document.body.style.overflow = menu.classList.contains('open') ? 'hidden' : '';
+  }
+  function closeMenu() {
+    document.getElementById('mobileMenu').classList.remove('open');
+    document.getElementById('hamburger').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
+</script>
+
+</body>
+</html>

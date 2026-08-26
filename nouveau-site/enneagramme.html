@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg"/>
+  <title>MGC — L'Ennéagramme</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,500;0,600;0,700;1,500;1,600&family=Work+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+  <style>
+    .hero { min-height: 40vh; padding: 8rem 3rem 2rem; }
+    .ennea-node:hover circle { stroke-width: 3; stroke-opacity: 1; }
+  </style>
+</head>
+<body>
+
+<!-- MENU MOBILE OVERLAY -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html" onclick="closeMenu()">Accueil</a>
+  <a href="outil-relationnel.html" onclick="closeMenu()">Outil Relationnel</a>
+  <a href="enneagramme.html" onclick="closeMenu()">L'Ennéagramme</a>
+  <a href="coaching.html" onclick="closeMenu()">Coaching</a>
+  <a href="apropos.html" onclick="closeMenu()">À propos</a>
+  <a href="https://www.instagram.com/mgc.com_/" target="_blank" rel="noopener" onclick="closeMenu()">Instagram</a>
+  <a href="rendez-vous.html" class="btn-mobile-rdv" onclick="closeMenu()">Rendez-vous</a>
+</div>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="index.html" class="logo">MGC</a>
+  <ul class="nav-links">
+    <li><a href="index.html">Accueil</a></li>
+    <li><a href="outil-relationnel.html">Outil Relationnel</a></li>
+    <li><a href="enneagramme.html" class="active">L'Ennéagramme</a></li>
+    <li><a href="coaching.html">Coaching</a></li>
+    <li><a href="apropos.html">À propos</a></li>
+  </ul>
+  <div class="nav-actions">
+    <a href="https://www.instagram.com/mgc.com_/" target="_blank" rel="noopener" class="btn-instagram" aria-label="Instagram">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="6"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.3" cy="6.7" r="1.1" fill="currentColor" stroke="none"/></svg>
+    </a>
+    <a href="rendez-vous.html" class="btn-nav">Rendez-vous</a>
+  </div>
+  <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <span class="hero-eyebrow reveal">Connaissance de soi</span>
+    <h1 class="reveal d1">L'<em>Ennéagramme</em></h1>
+    <p class="reveal d2">9 façons de se découvrir, 9 systèmes de communication à comprendre pour mieux se relier aux autres.</p>
+  </div>
+</section>
+
+<!-- WHEEL SECTION -->
+<section class="wheel-section" id="roue">
+  <span class="section-eyebrow reveal">Explorez</span>
+  <h2 class="section-title reveal d1">Explorez chaque <em>profil</em></h2>
+  <p class="section-sub reveal d2">Cliquez sur un numéro pour découvrir le profil correspondant.</p>
+  <div class="wheel-container reveal d3">
+    <svg class="wheel-svg" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <radialGradient id="nodeGrad" cx="50%" cy="30%" r="70%">
+          <stop offset="0%" stop-color="#ffffff"/>
+          <stop offset="100%" stop-color="#eee8d6"/>
+        </radialGradient>
+      </defs>
+      <circle cx="250" cy="250" r="190" fill="none" stroke="#c5bfa9" stroke-width="1" stroke-opacity="0.5"/>
+      <g stroke="#8b8c7c" stroke-width="1" stroke-opacity="0.35">
+        <line x1="250" y1="60"  x2="414" y2="345"/>
+        <line x1="414" y1="345" x2="86"  y2="345"/>
+        <line x1="86"  y1="345" x2="250" y2="60"/>
+      </g>
+      <g stroke="#8b8c7c" stroke-width="1" stroke-opacity="0.22">
+        <line x1="372" y1="104" x2="315" y2="429"/>
+        <line x1="315" y1="429" x2="437" y2="217"/>
+        <line x1="437" y1="217" x2="128" y2="104"/>
+        <line x1="128" y1="104" x2="185" y2="429"/>
+        <line x1="185" y1="429" x2="63"  y2="217"/>
+        <line x1="63"  y1="217" x2="372" y2="104"/>
+      </g>
+      <text x="250" y="245" text-anchor="middle" font-family="Fraunces,serif" font-size="20" fill="#1b1d18" font-style="italic">MGC</text>
+      <text x="250" y="268" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="10" fill="#8b8c7c" letter-spacing="2">9 TYPES</text>
+      <g class="ennea-nodes">
+        <g class="ennea-node" data-type="9" transform="translate(250,60)">
+          <circle r="22" fill="url(#nodeGrad)" stroke="#8b9dc3" stroke-width="1.5" stroke-opacity="0.6"/>
+          <text dy="0.35em" text-anchor="middle" fill="#6b7ca3" font-size="15" font-weight="600" font-family="IBM Plex Mono">9</text>
+        </g>
+        <g class="ennea-node" data-type="1" transform="translate(372,104)">
+          <circle r="22" fill="url(#nodeGrad)" stroke="#C96B4A" stroke-width="1.5" stroke-opacity="0.6"/>
+          <text dy="0.35em" text-anchor="middle" fill="#C96B4A" font-size="15" font-weight="600" font-family="IBM Plex Mono">1</text>
+        </g>
+        <g class="ennea-node" data-type="2" transform="translate(437,217)">
+          <circle r="22" fill="url(#nodeGrad)" stroke="#C97B7B" stroke-width="1.5" stroke-opacity="0.6"/>
+          <text dy="0.35em" text-anchor="middle" fill="#C97B7B" font-size="15" font-weight="600" font-family="IBM Plex Mono">2</text>
+        </g>
+        <g class="ennea-node" data-type="3" transform="translate(414,345)">
+          <circle r="22" fill="url(#nodeGrad)" stroke="#D17B0B" stroke-width="1.5" stroke-opacity="0.6"/>
+          <text dy="0.35em" text-anchor="middle" fill="#D17B0B" font-size="15" font-weight="600" font-family="IBM Plex Mono">3</text>
+        </g>
+        <g class="ennea-node" data-type="4" transform="translate(315,429)">
+          <circle r="22" fill="url(#nodeGrad)" stroke="#9B7BC4" stroke-width="1.5" stroke-opacity="0.6"/>
+          <text dy="0.35em" text-anchor="middle" fill="#9B7BC4" font-size="15" font-weight="600" font-family="IBM Plex Mono">4</text>
+        </g>
+        <g class="ennea-node" data-type="5" transform="translate(185,429)">
+          <circle r="22" fill="url(#nodeGrad)" stroke="#5B9EC9" stroke-width="1.5" stroke-opacity="0.6"/>
+          <text dy="0.35em" text-anchor="middle" fill="#5B9EC9" font-size="15" font-weight="600" font-family="IBM Plex Mono">5</text>
+        </g>
+        <g class="ennea-node" data-type="6" transform="translate(86,345)">
+          <circle r="22" fill="url(#nodeGrad)" stroke="#B36EE0" stroke-width="1.5" stroke-opacity="0.6"/>
+          <text dy="0.35em" text-anchor="middle" fill="#B36EE0" font-size="15" font-weight="600" font-family="IBM Plex Mono">6</text>
+        </g>
+        <g class="ennea-node" data-type="7" transform="translate(63,217)">
+          <circle r="22" fill="url(#nodeGrad)" stroke="#7BA87B" stroke-width="1.5" stroke-opacity="0.6"/>
+          <text dy="0.35em" text-anchor="middle" fill="#5c8a5c" font-size="15" font-weight="600" font-family="IBM Plex Mono">7</text>
+        </g>
+        <g class="ennea-node" data-type="8" transform="translate(128,104)">
+          <circle r="22" fill="url(#nodeGrad)" stroke="#F80303" stroke-width="1.5" stroke-opacity="0.6"/>
+          <text dy="0.35em" text-anchor="middle" fill="#e00303" font-size="15" font-weight="600" font-family="IBM Plex Mono">8</text>
+        </g>
+      </g>
+    </svg>
+  </div>
+  <div class="profil-preview" id="preview-box">
+    <div class="type-num" id="prev-num"></div>
+    <h3 id="prev-title"></h3>
+    <p id="prev-desc"></p>
+    <a id="prev-link" href="#">Découvrir ce profil →</a>
+  </div>
+  <p id="preview-hint">Survolez un numéro pour voir le profil</p>
+</section>
+
+<hr class="sep">
+
+<!-- PROFILS GRID -->
+<section class="profils-section">
+  <div class="s-inner">
+    <div class="reveal">
+      <span class="section-eyebrow">Les 9 profils</span>
+      <h2 class="section-title">Trouvez votre <em>type</em></h2>
+    </div>
+    <div class="profils-grid">
+      <a href="profil1.html" class="profil-card reveal d1" style="--accent:#C96B4A;">
+        <div class="num">01</div>
+        <div class="type-label">Type 1</div>
+        <h3>'Le Perfectionniste'</h3>
+        <p>Rigoureux, éthique, idéaliste. Cherche l'excellence et la justice dans tout ce qu'il entreprend.</p>
+      </a>
+      <a href="profil2.html" class="profil-card reveal d2" style="--accent:#C97B7B;">
+        <div class="num">02</div>
+        <div class="type-label">Type 2</div>
+        <h3>'L'Altruiste'</h3>
+        <p>Généreux, empathique, chaleureux. Trouve sa joie dans le service et le soin aux autres.</p>
+      </a>
+      <a href="profil3.html" class="profil-card reveal d3" style="--accent:#D17B0B;">
+        <div class="num">03</div>
+        <div class="type-label">Type 3</div>
+        <h3>'Le Performeur'</h3>
+        <p>Ambitieux, adaptable, charismatique. Excelle dans la réussite et inspire par son énergie.</p>
+      </a>
+      <a href="profil4.html" class="profil-card reveal d1" style="--accent:#9B7BC4;">
+        <div class="num">04</div>
+        <div class="type-label">Type 4</div>
+        <h3>'Le Romantique'</h3>
+        <p>Créatif, profond, authentique. Vit avec une intensité émotionnelle qui nourrit son art.</p>
+      </a>
+      <a href="profil5.html" class="profil-card reveal d2" style="--accent:#5B9EC9;">
+        <div class="num">05</div>
+        <div class="type-label">Type 5</div>
+        <h3>'L'Observateur'</h3>
+        <p>Analytique, perspicace, autonome. Comprend le monde en l'observant avec une acuité rare.</p>
+      </a>
+      <a href="profil6.html" class="profil-card reveal d3" style="--accent:#B36EE0;">
+        <div class="num">06</div>
+        <div class="type-label">Type 6</div>
+        <h3>'Le Loyaliste'</h3>
+        <p>Fiable, courageux, vigilant. S'engage profondément dans ses relations et convictions.</p>
+      </a>
+      <a href="profil7.html" class="profil-card reveal d1" style="--accent:#5c8a5c;">
+        <div class="num">07</div>
+        <div class="type-label">Type 7</div>
+        <h3>'L'Épicurien'</h3>
+        <p>Enthousiaste, créatif, optimiste. Embrasse la vie avec joie et soif d'expériences nouvelles.</p>
+      </a>
+      <a href="profil8.html" class="profil-card reveal d2" style="--accent:#e00303;">
+        <div class="num">08</div>
+        <div class="type-label">Type 8</div>
+        <h3>'Le Protecteur'</h3>
+        <p>Puissant, direct, protecteur. Défend les siens avec une intensité et une force naturelles.</p>
+      </a>
+      <a href="profil9.html" class="profil-card reveal d3" style="--accent:#6b7ca3;">
+        <div class="num">09</div>
+        <div class="type-label">Type 9</div>
+        <h3>'Le Médiateur'</h3>
+        <p>Pacifique, bienveillant, harmonieux. Crée naturellement l'unité et la paix autour de lui.</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<hr class="sep">
+
+<!-- CTA -->
+<div class="cta-s">
+  <span class="section-eyebrow reveal">Passer à l'action</span>
+  <h2 class="reveal d1">Quel est <em>votre</em> type ?</h2>
+  <p class="reveal d2">Réservez une séance pour identifier votre profil dominant et commencer votre exploration.</p>
+  <div class="btn-group">
+    <a href="rendez-vous.html" class="btn-primary reveal d3">Prendre rendez-vous →</a>
+    <a href="coaching.html" class="btn-outline reveal d4">Découvrir le coaching</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <a href="index.html" class="logo">MGC</a>
+    <p>Un accompagnement bienveillant pour maîtriser l'art de la communication relationnelle et explorer la profondeur de votre personnalité.</p>
+  </div>
+  <div>
+    <h4>Services</h4>
+    <ul>
+      <li><a href="coaching.html">Coaching individuel</a></li>
+      <li><a href="enneagramme.html">L'Ennéagramme</a></li>
+      <li><a href="outil-relationnel.html">Outil Relationnel</a></li>
+    </ul>
+  </div>
+  <div>
+    <h4>Navigation</h4>
+    <ul>
+      <li><a href="apropos.html">À propos</a></li>
+      <li><a href="rendez-vous.html">Rendez-vous</a></li>
+      <li><a href="legal-page.html">Mentions légales</a></li>
+    </ul>
+  </div>
+</footer>
+<div class="footer-copy">© 2026 MGC — Communication Relationnelle · Tous droits réservés</div>
+
+<script>
+  window.addEventListener('scroll', () => {
+    document.getElementById('nav').classList.toggle('scrolled', scrollY > 60);
+  });
+
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+  const profiles = {
+    1: { num: 'Type 1', title: 'Le Perfectionniste', desc: 'Rigoureux, éthique et idéaliste. Animé par une quête d\'excellence et de justice.', link: 'profil1.html' },
+    2: { num: 'Type 2', title: 'L\'Altruiste', desc: 'Généreux, empathique et chaleureux. Trouve son sens dans le don de soi.', link: 'profil2.html' },
+    3: { num: 'Type 3', title: 'Le Performeur', desc: 'Ambitieux, adaptable et charismatique. Excelle dans la réussite.', link: 'profil3.html' },
+    4: { num: 'Type 4', title: 'Le Romantique', desc: 'Créatif, profond et authentique. Vit avec une intensité émotionnelle rare.', link: 'profil4.html' },
+    5: { num: 'Type 5', title: 'L\'Observateur', desc: 'Analytique, perspicace et autonome. Comprend le monde avec acuité.', link: 'profil5.html' },
+    6: { num: 'Type 6', title: 'Le Loyaliste', desc: 'Fiable, courageux et vigilant. S\'engage profondément dans ses convictions.', link: 'profil6.html' },
+    7: { num: 'Type 7', title: 'L\'Épicurien', desc: 'Enthousiaste, créatif et optimiste. Embrasse la vie avec joie.', link: 'profil7.html' },
+    8: { num: 'Type 8', title: 'Le Protecteur', desc: 'Puissant, direct et protecteur. Défend les siens avec force naturelle.', link: 'profil8.html' },
+    9: { num: 'Type 9', title: 'Le Médiateur', desc: 'Pacifique, bienveillant et harmonieux. Crée l\'unité autour de lui.', link: 'profil9.html' }
+  };
+
+  function showPreview(t) {
+    const p = profiles[t];
+    document.getElementById('prev-num').textContent = p.num;
+    document.getElementById('prev-title').textContent = p.title;
+    document.getElementById('prev-desc').textContent = p.desc;
+    document.getElementById('prev-link').href = p.link;
+    document.getElementById('preview-box').classList.add('active');
+    document.getElementById('preview-hint').style.display = 'none';
+  }
+
+  document.querySelectorAll('.ennea-node').forEach(node => {
+    node.addEventListener('mouseenter', () => { showPreview(node.dataset.type); });
+    node.style.cursor = 'pointer';
+    node.addEventListener('click', () => { window.location.href = profiles[node.dataset.type].link; });
+  });
+
+  // HAMBURGER
+  function toggleMenu() {
+    const menu = document.getElementById('mobileMenu');
+    const burger = document.getElementById('hamburger');
+    menu.classList.toggle('open');
+    burger.classList.toggle('open');
+    document.body.style.overflow = menu.classList.contains('open') ? 'hidden' : '';
+  }
+  function closeMenu() {
+    document.getElementById('mobileMenu').classList.remove('open');
+    document.getElementById('hamburger').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
+</script>
+
+</body>
+</html>
