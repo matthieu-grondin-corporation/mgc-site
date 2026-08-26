@@ -51,7 +51,7 @@
 <!-- CONTENU RDV -->
 <div class="rdv-wrap">
   <div class="reveal">
-    <div class="rdv-section-title"><span class="icon">📅</span> Choisissez votre séance</div>
+    <div class="rdv-section-title">Choisissez votre séance</div>
   </div>
   <div class="seances-grid reveal d1">
     <div class="seance-card selected" onclick="selectSeance(this, 'Séance découverte')">
@@ -59,7 +59,7 @@
         <span class="seance-name">Séance découverte</span>
         <span class="seance-tag">Gratuit</span>
       </div>
-      <div class="seance-duration">⏱ 30 min</div>
+      <div class="seance-duration">30 min</div>
       <p class="seance-desc">Un premier échange gratuit pour explorer vos besoins et voir si l'accompagnement vous correspond.</p>
     </div>
     <div class="seance-card" onclick="selectSeance(this, 'Coaching individuel')">
@@ -67,7 +67,7 @@
         <span class="seance-name">Coaching individuel</span>
         <span class="seance-tag">Individuel</span>
       </div>
-      <div class="seance-duration">⏱ 1h</div>
+      <div class="seance-duration">1h</div>
       <p class="seance-desc">Une séance de coaching personnalisée centrée sur votre communication et vos objectifs relationnels.</p>
     </div>
     <div class="seance-card" onclick="selectSeance(this, 'Bilan ennéagramme')">
@@ -75,7 +75,7 @@
         <span class="seance-name">Bilan ennéagramme</span>
         <span class="seance-tag">Analyse</span>
       </div>
-      <div class="seance-duration">⏱ 1h30</div>
+      <div class="seance-duration">1h30</div>
       <p class="seance-desc">Un bilan complet de votre profil ennéagramme avec un plan d'action pour votre communication.</p>
     </div>
     <div class="seance-card" onclick="selectSeance(this, 'Accompagnement d\'équipe')">
@@ -83,12 +83,12 @@
         <span class="seance-name">Accompagnement d'équipe</span>
         <span class="seance-tag">Équipe</span>
       </div>
-      <div class="seance-duration">⏱ Sur mesure</div>
+      <div class="seance-duration">Sur mesure</div>
       <p class="seance-desc">Un programme adapté pour améliorer la communication au sein de votre équipe ou organisation.</p>
     </div>
   </div>
 
-  <div class="rdv-section-title reveal"><span class="icon">👤</span> Vos coordonnées</div>
+  <div class="rdv-section-title reveal">Vos coordonnées</div>
   <div class="form-card reveal d1">
     <form id="rdvForm" action="https://formsubmit.co/matthieu-grondin@hotmail.fr" method="POST">
       <input type="hidden" name="_subject" value="Nouvelle demande de rendez-vous — MGC"/>
@@ -99,28 +99,24 @@
         <div class="form-group">
           <label>Nom complet <span>*</span></label>
           <div class="input-wrap">
-            <span class="input-icon">👤</span>
             <input type="text" name="nom" placeholder="Votre nom" required/>
           </div>
         </div>
         <div class="form-group">
           <label>Email <span>*</span></label>
           <div class="input-wrap">
-            <span class="input-icon">✉️</span>
             <input type="email" name="email" placeholder="votre@email.com" required/>
           </div>
         </div>
         <div class="form-group">
           <label>Téléphone <span style="color:var(--grey)">(optionnel)</span></label>
           <div class="input-wrap">
-            <span class="input-icon">📱</span>
             <input type="tel" name="telephone" placeholder="+33 6 00 00 00 00"/>
           </div>
         </div>
         <div class="form-group">
           <label>Disponibilités préférées</label>
           <div class="input-wrap">
-            <span class="input-icon">📅</span>
             <select name="disponibilite">
               <option value="">Choisissez un créneau</option>
               <option>Matin (8h–12h)</option>
@@ -152,11 +148,10 @@
         </div>
       </div>
       <div class="form-submit">
-        <button type="submit" class="btn-submit">Envoyer ma demande <span>✈️</span></button>
+        <button type="submit" class="btn-submit">Envoyer ma demande</button>
       </div>
     </form>
     <div class="success-msg" id="successMsg">
-      <div class="s-icon">✅</div>
       <h3>Demande envoyée !</h3>
       <p>Je vous répondrai dans les 48h pour confirmer votre rendez-vous.</p>
     </div>
@@ -170,12 +165,10 @@
     <h2 class="reveal d1">Mes <em>coordonnées</em></h2>
     <div class="coord-grid reveal d2">
       <div class="coord-item">
-        <div class="coord-icon">📧</div>
         <div class="coord-label">Email</div>
         <div class="coord-value"><a href="mailto:matthieu-grondin@hotmail.fr">matthieu-grondin@hotmail.fr</a></div>
       </div>
       <div class="coord-item">
-        <div class="coord-icon">📍</div>
         <div class="coord-label">Lyon</div>
         <div class="coord-value">En présentiel & visioconférence</div>
       </div>
@@ -196,14 +189,12 @@
         <div class="form-group">
           <label>Nom <span>*</span></label>
           <div class="input-wrap">
-            <span class="input-icon">👤</span>
             <input type="text" name="nom" placeholder="Votre nom" required/>
           </div>
         </div>
         <div class="form-group">
           <label>Email <span>*</span></label>
           <div class="input-wrap">
-            <span class="input-icon">✉️</span>
             <input type="email" name="email" placeholder="votre@email.com" required/>
           </div>
         </div>
