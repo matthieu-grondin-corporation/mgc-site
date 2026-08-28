@@ -4,24 +4,44 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <link rel="icon" type="image/svg+xml" href="favicon.svg"/>
-  <title>MGC — L'art de la communication</title>
+  <title>MGC — Document</title>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="style.css"/>
   <style>
-    /* Masque toutes les icônes dans les cartes */
-    .outil-icon,
-    .card-icon {
+    .hero { min-height: 30vh; padding: 5rem 2rem 1.5rem; }
+    .pdf-viewer-section {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 2rem 4rem;
+    }
+    .pdf-back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      color: var(--gold);
+      font-size: 0.9rem;
+      margin-bottom: 1.5rem;
+    }
+    .pdf-back-link:hover { opacity: 0.8; }
+    .pdf-frame-wrap {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      height: 85vh;
+    }
+    .pdf-frame-wrap iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+    .pdf-fallback {
       display: none;
+      padding: 3rem 2rem;
+      text-align: center;
+      color: var(--grey);
     }
-
-    /* ===== CARTE OUTIL CLIQUABLE (PDF dans un nouvel onglet) ===== */
-    .outil-card-clickable {
-      cursor: pointer;
-    }
-    .outil-card-clickable:focus-visible {
-      outline: 2px solid var(--gold);
-      outline-offset: 3px;
-    }
+    .pdf-fallback a { color: var(--gold); }
   </style>
 </head>
 <body>
@@ -63,52 +83,19 @@
 <!-- HERO -->
 <section class="hero">
   <div class="hero-content reveal visible">
-    <h1>L'art de la <em>communication</em></h1>
-    <p>"Communiquer, ce n'est pas seulement parler. C'est créer un lien entre deux mondes intérieurs — un système qui relie l'individu à lui-même, aux autres et aux groupes qu'il forme."</p>
+    <h1 id="pdf-title">Document</h1>
   </div>
 </section>
 
-<!-- LES OUTILS ESSENTIELS -->
-<section id="outils" class="outils-section">
-  <h2>Les outils <em>essentiels</em></h2>
-
-  <div class="outils-grid">
-    <a href="voir-pdf.html?src=ebooks/Exercices_Ecoute_Active.pdf&titre=L%27%C3%A9coute%20active" class="outil-card outil-card-clickable">
-      <h3>L'écoute active</h3>
-      <p>Écouter sans préparer sa réponse. Accueillir les mots de l'autre sans jugement ni interprétation hâtive.</p>
-    </a>
-
-    <a href="voir-pdf.html?src=ebooks/Exercices_Le_Feedback.pdf&titre=Le%20feedback" class="outil-card outil-card-clickable">
-      <h3>Le feedback</h3>
-      <p>Donner un retour honnête et constructif, au bon moment, pour faire grandir la relation plutôt que la fragiliser.</p>
-    </a>
-
-    <a href="voir-pdf.html?src=ebooks/Exercices_Art_du_Questionnement.pdf&titre=L%27art%20du%20questionnement" class="outil-card outil-card-clickable">
-      <h3>L'art du questionnement</h3>
-      <p>Poser les bonnes questions, ouvertes et sincères, pour ouvrir l'échange plutôt que le refermer.</p>
-    </a>
-
-    <a href="voir-pdf.html?src=ebooks/Exercices_La_Responsabilite.pdf&titre=La%20responsabilit%C3%A9" class="outil-card outil-card-clickable">
-      <h3>La responsabilité</h3>
-      <p>Reconnaître sa part dans chaque échange, sans se blâmer ni blâmer l'autre, pour agir plutôt que subir.</p>
-    </a>
+<!-- VISIONNEUSE PDF -->
+<section class="pdf-viewer-section">
+  <a href="outil-relationnel.html" class="pdf-back-link">← Retour aux outils essentiels</a>
+  <div class="pdf-frame-wrap">
+    <iframe id="pdf-frame" title="Aperçu du document PDF"></iframe>
   </div>
-</section>
-
-<!-- ===== SECTION E-BOOKS ===== -->
-<section class="ebooks-section">
-  <h2>Nos <em>E-books</em></h2>
-  <p class="section-sub">Des guides pratiques pour approfondir vos compétences en communication relationnelle.</p>
-  <a href="ebooks.html" class="btn-primary">Voir tous nos e-books →</a>
-</section>
-
-<!-- CTA -->
-<section class="cta-section">
-  <div class="cta-container">
-    <h2>Prêt à transformer vos relations ?</h2>
-    <p>Un accompagnement personnalisé pour développer votre art de la communication au quotidien.</p>
-    <a href="rendez-vous.html" class="btn-primary">Prendre rendez-vous →</a>
-  </div>
+  <p class="pdf-fallback" id="pdf-fallback">
+    Ce document ne peut pas s'afficher ici. <a id="pdf-fallback-link" href="#" target="_blank" rel="noopener">Ouvrir le PDF dans un nouvel onglet →</a>
+  </p>
 </section>
 
 <!-- FOOTER -->
@@ -140,11 +127,6 @@
   window.addEventListener('scroll', () => {
     document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 50);
   });
-  const reveals = document.querySelectorAll('.reveal');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-  }, { threshold: 0.1 });
-  reveals.forEach(r => observer.observe(r));
 
   function toggleMenu() {
     const menu = document.getElementById('mobileMenu');
@@ -159,6 +141,26 @@
     document.body.style.overflow = '';
   }
   document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeMenu(); } });
+
+  // Charge le PDF demandé via ?src=...&titre=...
+  const params = new URLSearchParams(window.location.search);
+  const src = params.get('src');
+  const titre = params.get('titre');
+
+  if (titre) {
+    document.getElementById('pdf-title').textContent = titre;
+    document.title = 'MGC — ' + titre;
+  }
+
+  if (src && /^ebooks\/[\w\-]+\.pdf$/.test(src)) {
+    document.getElementById('pdf-frame').src = src;
+    document.getElementById('pdf-fallback-link').href = src;
+  } else {
+    document.getElementById('pdf-frame-wrap') && (document.querySelector('.pdf-frame-wrap').style.display = 'none');
+    document.getElementById('pdf-fallback').style.display = 'block';
+    document.getElementById('pdf-fallback-link').href = 'outil-relationnel.html';
+    document.getElementById('pdf-fallback-link').textContent = 'Retour à la page Outil Relationnel →';
+  }
 </script>
 
 </body>

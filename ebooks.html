@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg"/>
+  <title>MGC — Nos E-books</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+<!-- MENU MOBILE OVERLAY -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html" onclick="closeMenu()">Accueil</a>
+  <a href="outil-relationnel.html" onclick="closeMenu()">Outil Relationnel</a>
+  <a href="enneagramme.html" onclick="closeMenu()">L'Ennéagramme</a>
+  <a href="coaching.html" onclick="closeMenu()">Coaching</a>
+  <a href="ebooks.html" onclick="closeMenu()">Nos Ebooks</a>
+  <a href="apropos.html" onclick="closeMenu()">À propos</a>
+  <a href="https://www.instagram.com/mgc.com_/" target="_blank" rel="noopener" onclick="closeMenu()">Instagram</a>
+  <a href="rendez-vous.html" class="btn-mobile-rdv" onclick="closeMenu()">Rendez-vous</a>
+</div>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="index.html" class="logo">MGC</a>
+  <ul class="nav-links">
+    <li><a href="index.html">Accueil</a></li>
+    <li><a href="outil-relationnel.html">Outil Relationnel</a></li>
+    <li><a href="enneagramme.html">L'Ennéagramme</a></li>
+    <li><a href="coaching.html">Coaching</a></li>
+    <li><a href="ebooks.html" class="active">Nos Ebooks</a></li>
+    <li><a href="apropos.html">À propos</a></li>
+  </ul>
+  <div class="nav-actions">
+    <a href="https://www.instagram.com/mgc.com_/" target="_blank" rel="noopener" class="btn-instagram" aria-label="Instagram">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="6"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.3" cy="6.7" r="1.1" fill="currentColor" stroke="none"/></svg>
+    </a>
+    <a href="rendez-vous.html" class="btn-nav">Rendez-vous</a>
+  </div>
+  <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content reveal visible">
+    <h1>Nos <em>E-books</em></h1>
+    <p>Des guides pratiques pour approfondir, à votre rythme, votre art de la communication relationnelle.</p>
+  </div>
+</section>
+
+<!--
+  ============================================================
+  ZONE À COMPLÉTER PAR MATTHIEU — 5 liens de paiement Stripe
+  ============================================================
+  Pour chaque carte ci-dessous, remplace la valeur de href
+  (qui commence par "LIEN_STRIPE_") par le lien de paiement
+  Stripe correspondant (créé dans le Dashboard Stripe, format
+  https://buy.stripe.com/xxxxx). Il y a 5 hrefs à remplacer :
+    1. LIEN_STRIPE_PACK       → 4 Piliers de la Communication (7€)
+    2. LIEN_STRIPE_BASES      → Les Bases de la Communication Relationnelle (15€)
+    3. LIEN_STRIPE_AVANCEE    → Communication Avancée : les 7 Clés (15€)
+    4. LIEN_STRIPE_ENNEAGRAMME→ Les 9 Types de l'Ennéagramme (15€)
+    5. LIEN_STRIPE_COACHING   → Coaching & Transformation Relationnelle (15€)
+  Tant qu'un lien n'est pas remplacé, un clic sur le bouton
+  affiche un message d'avertissement au lieu de casser la page.
+  ============================================================
+-->
+
+<!-- ===== SECTION E-BOOKS ===== -->
+<section class="ebooks-section">
+  <p class="ebooks-note">Paiement sécurisé par carte bancaire via Stripe. Après votre achat, l'e-book vous est envoyé par email dans les minutes qui suivent.</p>
+
+  <div class="ebook-shop-grid">
+
+    <div class="ebook-card featured">
+      <span class="ebook-badge">Idéal pour débuter</span>
+      <div class="ebook-name">4 Piliers de la Communication</div>
+      <p class="ebook-desc">Écoute active, feedback, questionnement et responsabilité réunis dans un seul guide pratique.</p>
+      <div class="ebook-footer">
+        <div class="ebook-price">7<span>€</span></div>
+        <a href="LIEN_STRIPE_PACK" class="ebook-buy" data-ebook="4 Piliers de la Communication">Acheter</a>
+      </div>
+    </div>
+
+    <div class="ebook-card">
+      <div class="ebook-name">Les Bases de la Communication Relationnelle</div>
+      <p class="ebook-desc">Un guide complet pour maîtriser l'écoute active, l'empathie et la parole juste au quotidien.</p>
+      <div class="ebook-footer">
+        <div class="ebook-price">15<span>€</span></div>
+        <a href="LIEN_STRIPE_BASES" class="ebook-buy" data-ebook="Les Bases de la Communication Relationnelle">Acheter</a>
+      </div>
+    </div>
+
+    <div class="ebook-card">
+      <div class="ebook-name">Communication Avancée : les 7 Clés</div>
+      <p class="ebook-desc">Sept leviers avancés pour approfondir votre communication relationnelle et transformer durablement vos échanges les plus délicats.</p>
+      <div class="ebook-footer">
+        <div class="ebook-price">15<span>€</span></div>
+        <a href="LIEN_STRIPE_AVANCEE" class="ebook-buy" data-ebook="Communication Avancée : les 7 Clés">Acheter</a>
+      </div>
+    </div>
+
+    <div class="ebook-card">
+      <div class="ebook-name">Les 9 Types de l'Ennéagramme</div>
+      <p class="ebook-desc">Explorez votre profil et celui de vos proches pour des relations plus harmonieuses.</p>
+      <div class="ebook-footer">
+        <div class="ebook-price">15<span>€</span></div>
+        <a href="LIEN_STRIPE_ENNEAGRAMME" class="ebook-buy" data-ebook="Les 9 Types de l'Ennéagramme">Acheter</a>
+      </div>
+    </div>
+
+    <div class="ebook-card">
+      <div class="ebook-name">Coaching & Transformation Relationnelle</div>
+      <p class="ebook-desc">Méthodes et exercices pour un accompagnement personnalisé et durable.</p>
+      <div class="ebook-footer">
+        <div class="ebook-price">15<span>€</span></div>
+        <a href="LIEN_STRIPE_COACHING" class="ebook-buy" data-ebook="Coaching & Transformation Relationnelle">Acheter</a>
+      </div>
+    </div>
+
+  </div>
+
+  <p class="ebook-trust">Livraison numérique uniquement (PDF), aucun envoi postal. Conformément à l'article L221-28 du Code de la consommation, l'accès étant immédiat, le droit de rétractation de 14 jours ne s'applique pas une fois le fichier envoyé. Voir nos <a href="legal-page.html">conditions générales de vente</a>.</p>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="cta-container">
+    <h2>Prêt à transformer vos relations ?</h2>
+    <p>Un accompagnement personnalisé pour développer votre art de la communication au quotidien.</p>
+    <a href="rendez-vous.html" class="btn-primary">Prendre rendez-vous →</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <a href="index.html" class="logo">MGC</a>
+    <p>Un accompagnement bienveillant pour maîtriser l'art de la communication relationnelle et explorer la profondeur de votre personnalité.</p>
+  </div>
+  <div>
+    <h4>Services</h4>
+    <ul>
+      <li><a href="coaching.html">Coaching individuel</a></li>
+      <li><a href="enneagramme.html">L'Ennéagramme</a></li>
+      <li><a href="outil-relationnel.html">Outil Relationnel</a></li>
+    </ul>
+  </div>
+  <div>
+    <h4>Navigation</h4>
+    <ul>
+      <li><a href="apropos.html">À propos</a></li>
+      <li><a href="rendez-vous.html">Rendez-vous</a></li>
+      <li><a href="legal-page.html">Mentions légales</a></li>
+    </ul>
+  </div>
+</footer>
+<div class="footer-copy">© 2026 MGC — Communication Relationnelle · Tous droits réservés</div>
+
+<script>
+  window.addEventListener('scroll', () => {
+    document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 50);
+  });
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  reveals.forEach(r => observer.observe(r));
+
+  function toggleMenu() {
+    const menu = document.getElementById('mobileMenu');
+    const burger = document.getElementById('hamburger');
+    menu.classList.toggle('open');
+    burger.classList.toggle('open');
+    document.body.style.overflow = menu.classList.contains('open') ? 'hidden' : '';
+  }
+  function closeMenu() {
+    document.getElementById('mobileMenu').classList.remove('open');
+    document.getElementById('hamburger').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeMenu(); } });
+
+  // Garde-fou : évite un lien mort tant que le lien Stripe n'a pas été collé
+  document.querySelectorAll('.ebook-buy').forEach(btn => {
+    btn.addEventListener('click', e => {
+      if (btn.getAttribute('href').startsWith('LIEN_STRIPE')) {
+        e.preventDefault();
+        alert('Le paiement pour "' + btn.dataset.ebook + '" n\'est pas encore configuré. Crée le lien Stripe puis colle-le dans ebooks.html.');
+      }
+    });
+  });
+</script>
+
+</body>
+</html>

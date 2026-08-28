@@ -549,7 +549,6 @@ section { padding: 3.5rem 2rem; }
   padding: 2rem;
 }
 .success-msg.show { display: block; }
-.s-icon { font-size: 3rem; margin-bottom: 1rem; }
 
 /* ---------- FOOTER ---------- */
 footer {
@@ -758,6 +757,117 @@ footer ul a:hover { color: var(--gold); }
   color: var(--grey);
   font-size: 0.9rem;
   line-height: 1.6;
+}
+
+/* ---------- E-BOOKS ---------- */
+.ebooks-section {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 4rem 2rem;
+  text-align: center;
+}
+.ebooks-note {
+  max-width: 600px;
+  margin: 0.8rem auto 0;
+  color: var(--grey);
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+.ebook-shop-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2.2rem;
+  max-width: 1100px;
+  margin: 3.5rem auto 0;
+  text-align: left;
+}
+.ebook-card {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 2.2rem 2rem;
+  transition: var(--transition);
+  position: relative;
+}
+.ebook-card:hover {
+  border-color: var(--border-hover, var(--gold));
+  transform: translateY(-3px);
+}
+.ebook-card.featured {
+  border-color: var(--gold);
+  background: rgba(201,169,110,0.06);
+}
+.ebook-badge {
+  align-self: flex-start;
+  background: rgba(201,169,110,0.12);
+  color: var(--gold);
+  border: 1px solid rgba(201,169,110,0.35);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 0.3rem 0.7rem;
+  border-radius: 50px;
+}
+.ebook-name {
+  font-family: var(--serif);
+  font-size: 1.25rem;
+  color: var(--text);
+  line-height: 1.35;
+}
+.ebook-desc {
+  font-size: 0.9rem;
+  color: var(--grey);
+  line-height: 1.7;
+  flex-grow: 1;
+}
+.ebook-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 0.4rem;
+  padding-top: 1.2rem;
+  border-top: 1px solid var(--border);
+}
+.ebook-price {
+  font-family: var(--serif);
+  font-size: 1.5rem;
+  color: var(--gold);
+}
+.ebook-price span {
+  font-size: 0.8rem;
+  color: var(--grey);
+  font-family: var(--sans);
+}
+.ebook-buy {
+  display: inline-block;
+  text-align: center;
+  padding: 0.65rem 1.3rem;
+  border-radius: 50px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.2px;
+  background: transparent;
+  border: 1px solid var(--gold);
+  color: var(--gold);
+  transition: var(--transition);
+}
+.ebook-buy:hover {
+  background: var(--gold);
+  color: var(--bg);
+}
+.ebook-trust {
+  max-width: 700px;
+  margin: 3rem auto 0;
+  padding-top: 1.6rem;
+  border-top: 1px solid var(--border);
+  color: var(--grey-soft, var(--grey));
+  font-size: 0.82rem;
+  line-height: 1.7;
 }
 
 /* ---------- LEVEL SECTIONS ---------- */
@@ -1346,10 +1456,6 @@ footer ul a:hover { color: var(--gold); }
   align-items: center;
   gap: 0.6rem;
 }
-.rdv-section-title .icon {
-  font-size: 1.4rem;
-}
-
 /* GRILLE DES SÉANCES */
 .seances-grid {
   display: grid;
@@ -1439,12 +1545,6 @@ footer ul a:hover { color: var(--gold); }
   display: flex;
   align-items: center;
 }
-.input-icon {
-  position: absolute;
-  left: 1rem;
-  font-size: 1rem;
-  pointer-events: none;
-}
 .input-wrap input,
 .input-wrap select,
 .input-wrap textarea {
@@ -1455,7 +1555,7 @@ footer ul a:hover { color: var(--gold); }
   color: #fff;
   font-family: 'Inter', sans-serif;
   font-size: 0.95rem;
-  padding: 0.9rem 1rem 0.9rem 2.8rem;
+  padding: 0.9rem 1rem;
   outline: none;
   transition: border-color 0.3s;
 }
@@ -1543,7 +1643,6 @@ footer ul a:hover { color: var(--gold); }
   transition: border-color 0.3s;
 }
 .coord-item:hover { border-color: rgba(201,169,110,0.3); }
-.coord-icon { font-size: 2rem; margin-bottom: 0.8rem; }
 .coord-label {
   font-size: 0.75rem;
   text-transform: uppercase;
@@ -1581,7 +1680,6 @@ footer ul a:hover { color: var(--gold); }
   text-align: center;
   padding: 3rem;
 }
-.success-msg .s-icon { font-size: 3rem; margin-bottom: 1rem; }
 .success-msg h3 {
   font-family: 'Playfair Display', serif;
   font-size: 1.8rem;
@@ -1596,6 +1694,7 @@ footer ul a:hover { color: var(--gold); }
   .form-grid { grid-template-columns: 1fr; }
   .coord-grid { grid-template-columns: 1fr; }
   .form-card, .contact-card { padding: 1.5rem; }
+  .ebook-shop-grid { grid-template-columns: 1fr; }
 }
 /* ===== APROPOS PAGE ===== */
 
@@ -1630,10 +1729,6 @@ footer ul a:hover { color: var(--gold); }
   color: rgba(255,255,255,0.4);
   text-align: center;
   padding: 2rem;
-}
-
-.ph-icon {
-  font-size: 3rem;
 }
 
 .photo-placeholder p {
@@ -1731,11 +1826,6 @@ footer ul a:hover { color: var(--gold); }
 .valeur-card:hover {
   border-color: rgba(201,169,110,0.3);
   transform: translateY(-4px);
-}
-
-.valeur-icon {
-  font-size: 2.2rem;
-  margin-bottom: 1rem;
 }
 
 .valeur-card h3 {
