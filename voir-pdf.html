@@ -7,6 +7,7 @@
   <title>MGC — Document</title>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="style.css"/>
+  <script src="vendor/pdfjs/pdf.min.js"></script>
   <style>
     .hero { min-height: 30vh; padding: 5rem 2rem 1.5rem; }
     .pdf-viewer-section {
@@ -28,12 +29,50 @@
       border: 1px solid var(--border);
       border-radius: var(--radius);
       overflow: hidden;
-      height: 85vh;
+      display: flex;
+      flex-direction: column;
     }
-    .pdf-frame-wrap iframe {
-      width: 100%;
-      height: 100%;
-      border: none;
+    .pdf-toolbar {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1.2rem;
+      padding: 0.7rem 1rem;
+      border-bottom: 1px solid var(--border);
+      flex-wrap: wrap;
+    }
+    .pdf-toolbar button {
+      background: transparent;
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      width: 2rem;
+      height: 2rem;
+      border-radius: 50%;
+      font-size: 1rem;
+      line-height: 1;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .pdf-toolbar button:hover:not(:disabled) { background: var(--gold); color: var(--bg); }
+    .pdf-toolbar button:disabled { opacity: 0.3; cursor: default; }
+    .pdf-page-info, .pdf-zoom-value {
+      font-size: 0.85rem;
+      color: var(--grey);
+      min-width: 5.5rem;
+      text-align: center;
+    }
+    .pdf-toolbar-group { display: flex; align-items: center; gap: 0.5rem; }
+    .pdf-canvas-wrap {
+      overflow: auto;
+      height: 80vh;
+      display: flex;
+      justify-content: center;
+      padding: 1.5rem;
+      background: var(--bg-soft);
+    }
+    .pdf-canvas-wrap canvas {
+      box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+      height: fit-content;
     }
     .pdf-fallback {
       display: none;
@@ -90,8 +129,22 @@
 <!-- VISIONNEUSE PDF -->
 <section class="pdf-viewer-section">
   <a href="outil-relationnel.html" class="pdf-back-link">← Retour aux outils essentiels</a>
-  <div class="pdf-frame-wrap">
-    <iframe id="pdf-frame" title="Aperçu du document PDF"></iframe>
+  <div class="pdf-frame-wrap" id="pdf-frame-wrap">
+    <div class="pdf-toolbar">
+      <div class="pdf-toolbar-group">
+        <button type="button" id="pdf-prev" aria-label="Page précédente">‹</button>
+        <span class="pdf-page-info" id="pdf-page-info">…</span>
+        <button type="button" id="pdf-next" aria-label="Page suivante">›</button>
+      </div>
+      <div class="pdf-toolbar-group">
+        <button type="button" id="pdf-zoom-out" aria-label="Zoom arrière">−</button>
+        <span class="pdf-zoom-value" id="pdf-zoom-value">100%</span>
+        <button type="button" id="pdf-zoom-in" aria-label="Zoom avant">+</button>
+      </div>
+    </div>
+    <div class="pdf-canvas-wrap" id="pdf-canvas-wrap">
+      <canvas id="pdf-canvas"></canvas>
+    </div>
   </div>
   <p class="pdf-fallback" id="pdf-fallback">
     Ce document ne peut pas s'afficher ici. <a id="pdf-fallback-link" href="#" target="_blank" rel="noopener">Ouvrir le PDF dans un nouvel onglet →</a>
@@ -152,14 +205,87 @@
     document.title = 'MGC — ' + titre;
   }
 
-  if (src && /^ebooks\/[\w\-]+\.pdf$/.test(src)) {
-    document.getElementById('pdf-frame').src = src;
-    document.getElementById('pdf-fallback-link').href = src;
-  } else {
-    document.getElementById('pdf-frame-wrap') && (document.querySelector('.pdf-frame-wrap').style.display = 'none');
+  function showFallback(linkHref, linkText) {
+    document.getElementById('pdf-frame-wrap').style.display = 'none';
     document.getElementById('pdf-fallback').style.display = 'block';
-    document.getElementById('pdf-fallback-link').href = 'outil-relationnel.html';
-    document.getElementById('pdf-fallback-link').textContent = 'Retour à la page Outil Relationnel →';
+    document.getElementById('pdf-fallback-link').href = linkHref;
+    if (linkText) document.getElementById('pdf-fallback-link').textContent = linkText;
+  }
+
+  if (!(src && /^ebooks\/[\w\-]+\.pdf$/.test(src))) {
+    showFallback('outil-relationnel.html', 'Retour à la page Outil Relationnel →');
+  } else if (typeof pdfjsLib === 'undefined') {
+    showFallback(src, 'Ouvrir le PDF dans un nouvel onglet →');
+  } else {
+    pdfjsLib.GlobalWorkerOptions.workerSrc = 'vendor/pdfjs/pdf.worker.min.js';
+
+    const canvas = document.getElementById('pdf-canvas');
+    const ctx = canvas.getContext('2d');
+    let pdfDoc = null;
+    let pageNum = 1;
+    let scale = 1.2;
+    let renderTask = null;
+
+    function renderPage(num) {
+      pdfDoc.getPage(num).then(page => {
+        const viewport = page.getViewport({ scale });
+        const outputScale = window.devicePixelRatio || 1;
+        canvas.width = Math.floor(viewport.width * outputScale);
+        canvas.height = Math.floor(viewport.height * outputScale);
+        canvas.style.width = Math.floor(viewport.width) + 'px';
+        canvas.style.height = Math.floor(viewport.height) + 'px';
+        const transform = outputScale !== 1 ? [outputScale, 0, 0, outputScale, 0, 0] : null;
+
+        if (renderTask) renderTask.cancel();
+        renderTask = page.render({ canvasContext: ctx, viewport, transform });
+        renderTask.promise.then(() => {
+          document.getElementById('pdf-page-info').textContent = `Page ${num} / ${pdfDoc.numPages}`;
+          document.getElementById('pdf-zoom-value').textContent = Math.round(scale / 1.2 * 100) + '%';
+          document.getElementById('pdf-prev').disabled = num <= 1;
+          document.getElementById('pdf-next').disabled = num >= pdfDoc.numPages;
+          document.getElementById('pdf-canvas-wrap').dispatchEvent(new Event('pdf-first-render'));
+        }).catch(err => { console.error('render failed', err); });
+      }).catch(err => { console.error('getPage failed', err); });
+    }
+
+    document.getElementById('pdf-prev').addEventListener('click', () => {
+      if (pageNum <= 1) return;
+      pageNum--; renderPage(pageNum);
+    });
+    document.getElementById('pdf-next').addEventListener('click', () => {
+      if (pageNum >= pdfDoc.numPages) return;
+      pageNum++; renderPage(pageNum);
+    });
+    document.getElementById('pdf-zoom-in').addEventListener('click', () => {
+      scale = Math.min(scale + 0.24, 3.6);
+      renderPage(pageNum);
+    });
+    document.getElementById('pdf-zoom-out').addEventListener('click', () => {
+      scale = Math.max(scale - 0.24, 0.6);
+      renderPage(pageNum);
+    });
+
+    let firstRenderDone = false;
+    const stuckTimer = setTimeout(() => {
+      if (!firstRenderDone) {
+        console.error('PDF rendering did not complete in time');
+        showFallback(src, 'Ouvrir le PDF dans un nouvel onglet →');
+      }
+    }, 12000);
+
+    pdfjsLib.getDocument(src).promise.then(doc => {
+      pdfDoc = doc;
+      renderPage(pageNum);
+    }).catch(err => {
+      clearTimeout(stuckTimer);
+      console.error('getDocument failed', err);
+      showFallback(src, 'Ouvrir le PDF dans un nouvel onglet →');
+    });
+
+    document.getElementById('pdf-canvas-wrap').addEventListener('pdf-first-render', () => {
+      firstRenderDone = true;
+      clearTimeout(stuckTimer);
+    });
   }
 </script>
 

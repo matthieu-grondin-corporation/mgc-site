@@ -7,6 +7,8 @@
   <title>MGC — Rendez-vous</title>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="style.css"/>
+  <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet"/>
+  <script src="https://assets.calendly.com/assets/external/widget.js" async></script>
 </head>
 <body>
 
@@ -90,73 +92,13 @@
     </div>
   </div>
 
-  <div class="rdv-section-title reveal">Vos coordonnées</div>
-  <div class="form-card reveal d1">
-    <form id="rdvForm" action="https://formsubmit.co/matthieu-grondin@hotmail.fr" method="POST">
-      <input type="hidden" name="_subject" value="Nouvelle demande de rendez-vous — MGC"/>
-      <input type="hidden" name="_captcha" value="false"/>
-      <input type="hidden" name="_next" value="merci.html"/>
-      <input type="hidden" name="séance" id="seanceInput" value="Séance découverte"/>
-      <div class="form-grid">
-        <div class="form-group">
-          <label>Nom complet <span>*</span></label>
-          <div class="input-wrap">
-            <input type="text" name="nom" placeholder="Votre nom" required/>
-          </div>
-        </div>
-        <div class="form-group">
-          <label>Email <span>*</span></label>
-          <div class="input-wrap">
-            <input type="email" name="email" placeholder="votre@email.com" required/>
-          </div>
-        </div>
-        <div class="form-group">
-          <label>Téléphone <span style="color:var(--grey)">(optionnel)</span></label>
-          <div class="input-wrap">
-            <input type="tel" name="telephone" placeholder="+33 6 00 00 00 00"/>
-          </div>
-        </div>
-        <div class="form-group">
-          <label>Disponibilités préférées</label>
-          <div class="input-wrap">
-            <select name="disponibilite">
-              <option value="">Choisissez un créneau</option>
-              <option>Matin (8h–12h)</option>
-              <option>Déjeuner (12h–14h)</option>
-              <option>Après-midi (14h–18h)</option>
-              <option>Soir (18h–20h)</option>
-              <option>Flexible / Sur mesure</option>
-            </select>
-          </div>
-        </div>
-        <div class="form-group full">
-          <label>Jours préférés</label>
-          <div class="dispo-grid" id="dispoGrid">
-            <div class="dispo-btn" onclick="toggleDispo(this)">Lundi</div>
-            <div class="dispo-btn" onclick="toggleDispo(this)">Mardi</div>
-            <div class="dispo-btn" onclick="toggleDispo(this)">Mercredi</div>
-            <div class="dispo-btn" onclick="toggleDispo(this)">Jeudi</div>
-            <div class="dispo-btn" onclick="toggleDispo(this)">Vendredi</div>
-            <div class="dispo-btn" onclick="toggleDispo(this)">Samedi</div>
-            <div class="dispo-btn" onclick="toggleDispo(this)">Flexible</div>
-          </div>
-          <input type="hidden" name="jours" id="joursInput"/>
-        </div>
-        <div class="form-group full">
-          <label>Votre demande <span>*</span></label>
-          <div class="input-wrap">
-            <textarea name="message" placeholder="Décrivez brièvement ce sur quoi vous souhaitez travailler..." required></textarea>
-          </div>
-        </div>
-      </div>
-      <div class="form-submit">
-        <button type="submit" class="btn-submit">Envoyer ma demande</button>
-      </div>
-    </form>
-    <div class="success-msg" id="successMsg">
-      <h3>Demande envoyée !</h3>
-      <p>Je vous répondrai dans les 48h pour confirmer votre rendez-vous.</p>
+  <div class="rdv-section-title reveal">Choisissez votre créneau</div>
+  <div class="form-card reveal d1" style="padding:1.5rem;">
+    <div id="calendlyNotice" style="display:none; padding:2rem 1rem; text-align:center; color: var(--grey);">
+      <p style="margin-bottom:0.5rem; color:#fff; font-weight:600;">Prise de rendez-vous en ligne bientôt disponible</p>
+      <p>Le calendrier en ligne est en cours de configuration. En attendant, écrivez-moi directement via le formulaire ci-dessous.</p>
     </div>
+    <div class="calendly-inline-widget" id="calendlyWidget" data-url="" style="min-width:280px; height:750px;"></div>
   </div>
 </div>
 
@@ -247,17 +189,50 @@
   }), { threshold: 0.1 });
   document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 
+  // ⚠️ À CONFIGURER : remplace par ton nom d'utilisateur Calendly
+  // (visible dans l'URL de ton compte, ex. https://calendly.com/matthieu-grondin → 'matthieu-grondin')
+  const CALENDLY_USERNAME = 'mgc-';
+
+  // Fais correspondre chaque séance au slug de son type d'événement Calendly
+  // (le dernier segment de l'URL de l'événement, ex. .../decouverte → 'decouverte')
+  const CALENDLY_EVENTS = {
+    'Séance découverte': '30min',
+    'Coaching individuel': 'coaching-indivduel',
+    'Bilan ennéagramme': 'bilan-enneagramme'
+    // "Accompagnement d'équipe" : pas encore d'événement Calendly créé pour cette séance
+  };
+
+  function loadCalendlyEvent(seanceName) {
+    const container = document.getElementById('calendlyWidget');
+    const notice = document.getElementById('calendlyNotice');
+    const slug = CALENDLY_EVENTS[seanceName];
+
+    if (CALENDLY_USERNAME === 'VOTRE-LIEN-CALENDLY' || !slug) {
+      container.style.display = 'none';
+      notice.style.display = 'block';
+      return;
+    }
+
+    notice.style.display = 'none';
+    container.style.display = 'block';
+    container.innerHTML = '';
+    const url = `https://calendly.com/${CALENDLY_USERNAME}/${slug}?background_color=14101f&text_color=f0ebe0&primary_color=c9a96e`;
+    container.setAttribute('data-url', url);
+
+    if (window.Calendly && Calendly.initInlineWidget) {
+      Calendly.initInlineWidget({ url, parentElement: container });
+    } else {
+      setTimeout(() => loadCalendlyEvent(seanceName), 300);
+    }
+  }
+
   function selectSeance(el, name) {
     document.querySelectorAll('.seance-card').forEach(c => c.classList.remove('selected'));
     el.classList.add('selected');
-    document.getElementById('seanceInput').value = name;
+    loadCalendlyEvent(name);
   }
 
-  function toggleDispo(el) {
-    el.classList.toggle('active');
-    const actifs = [...document.querySelectorAll('.dispo-btn.active')].map(b => b.textContent);
-    document.getElementById('joursInput').value = actifs.join(', ');
-  }
+  loadCalendlyEvent('Séance découverte');
 
   function toggleMenu() {
     const menu = document.getElementById('mobileMenu');
